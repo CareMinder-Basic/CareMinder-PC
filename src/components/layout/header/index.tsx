@@ -3,8 +3,7 @@ import UserHeader from "./UserHeader";
 import { ReactComponent as Logo } from "@assets/full-logo.svg";
 
 import { userState } from "@libraries/recoil";
-import { Container, styled } from "@mui/material";
-import { CMColors } from "@styles/colors";
+import { Box, styled } from "@mui/material";
 import { useRecoilValue } from "recoil";
 
 export default function Header() {
@@ -29,7 +28,7 @@ export default function Header() {
   );
 }
 
-const Layout = styled(Container)({
+const Layout = styled(Box)(({ theme }) => ({
   position: "fixed",
   top: 0,
   left: 0,
@@ -42,5 +41,5 @@ const Layout = styled(Container)({
 
   padding: "14px 28px",
 
-  backgroundColor: CMColors.primary.a60,
-});
+  backgroundColor: theme.palette.primary.main,
+}));
