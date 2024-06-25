@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "types": ["./src/svg.d.ts"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -35,6 +36,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/svg.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
