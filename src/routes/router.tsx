@@ -1,10 +1,11 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import RoutePath from "@routes/routePath";
+import { ProtectedLayout } from "@components/layout";
 
 const routes: RouteObject[] = [
   {
     path: RoutePath.Index,
-    element: <>index page</>,
+    element: <ProtectedLayout />,
   },
   { path: "*", element: <>not found page</> },
 ];
