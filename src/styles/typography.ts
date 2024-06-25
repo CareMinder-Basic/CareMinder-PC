@@ -1,5 +1,3 @@
-import "pretendard";
-
 const calcRem = (px: number) => `${px / 16}rem`;
 
 const typography = {
