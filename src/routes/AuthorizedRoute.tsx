@@ -22,9 +22,8 @@ export default function AuthorizedRoute({ allowedRoles }: AuthorizedRouteProps) 
       console.error(`접근이 불가능한 경로입니다. (접근 경로: ${pathname}, 권한: ${user?.type})`);
       navigate(-1);
     }
-    setIsChecking(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, allowedRoles]);
 
   if (isChecking) {
     return (

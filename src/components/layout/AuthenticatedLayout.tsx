@@ -2,13 +2,13 @@ import Sidebar from "./sidebar";
 import Header from "./header";
 
 import { Box, Stack, styled } from "@mui/material";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { userState } from "@libraries/recoil";
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
 import RoutePath from "@routes/routePath";
 
-export default function AuthenticatedLayout({ children }: PropsWithChildren) {
+export default function AuthenticatedLayout() {
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [isChecking, setIsChecking] = useState(true);
@@ -32,7 +32,9 @@ export default function AuthenticatedLayout({ children }: PropsWithChildren) {
       <Body>
         <Sidebar />
         <OuterContainer>
-          <InnerContainer>{children}</InnerContainer>
+          <InnerContainer>
+            <Outlet />
+          </InnerContainer>
         </OuterContainer>
       </Body>
     </Container>
