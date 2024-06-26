@@ -5,11 +5,11 @@ import { UserType } from "@models/index";
 import { userState } from "@libraries/recoil";
 import { Box, CircularProgress } from "@mui/material";
 
-type ProtectedRouteProps = {
+type AuthorizedRouteProps = {
   allowedRoles: UserType[];
 };
 
-export default function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
+export default function AuthorizedRoute({ allowedRoles }: AuthorizedRouteProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useRecoilValue(userState);
