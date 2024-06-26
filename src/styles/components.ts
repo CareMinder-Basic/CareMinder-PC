@@ -70,6 +70,15 @@ const components: Components<Omit<Theme, "components">> = {
       },
     },
   },
+  MuiLink: {
+    styleOverrides: {
+      root: {
+        textDecoration: "none",
+        color: palette.text.primary,
+        opacity: 0.6,
+      },
+    },
+  },
 };
 
 export default components;

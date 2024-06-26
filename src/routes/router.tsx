@@ -1,8 +1,9 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import RoutePath from "@routes/routePath";
-import { AuthenticatedLayout } from "@components/layout";
+import AuthenticatedLayout from "@components/layout";
 import AuthorizedRoute from "@routes/AuthorizedRoute";
 import {
+  AdminSigninPage,
   AdminStaffManagementPage,
   AdminWardManagementPage,
   CompletedRequestsPage,
@@ -12,6 +13,7 @@ import {
   PatientManagementPage,
   RequestsPage,
   SettingsPage,
+  SigninPage,
 } from "@pages/index";
 
 const routes: RouteObject[] = [
@@ -41,7 +43,8 @@ const routes: RouteObject[] = [
       },
     ],
   },
-  { path: RoutePath.Signin, element: <>signin</> },
+  { path: RoutePath.Signin, element: <SigninPage /> },
+  { path: RoutePath.AdminSignin, element: <AdminSigninPage /> },
   { path: "*", element: <>Not found page</> },
 ];
 
