@@ -11,6 +11,7 @@ export default function UserSidebar() {
   return (
     <>
       <HomeMenu />
+      {/* Todo */}
       {/* <DietMenu /> */}
       <RequestsMenu />
       <PatientManagementMenu />
