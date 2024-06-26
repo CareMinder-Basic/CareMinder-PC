@@ -1,7 +1,7 @@
 import {
   HomeMenu,
   RequestsMenu,
-  PatientManageMenu,
+  PatientManagementMenu,
   CompletedRequestsMenu,
   NoticeMenu,
   SettingsMenu,
@@ -13,7 +13,7 @@ export default function UserSidebar() {
       <HomeMenu />
       {/* <DietMenu /> */}
       <RequestsMenu />
-      <PatientManageMenu />
+      <PatientManagementMenu />
       <CompletedRequestsMenu />
       <NoticeMenu />
       <SettingsMenu />

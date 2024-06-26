@@ -4,7 +4,7 @@ export { default as HomeMenu } from "./HomeMenu";
 export { default as AdminWardManagementMenu } from "./AdminWardManagementMenu";
 export { default as MenuLayout } from "./MenuLayout";
 export { default as NoticeMenu } from "./NoticeMenu";
-export { default as PatientManageMenu } from "./PatientManageMenu";
+export { default as PatientManagementMenu } from "./PatientManagementMenu";
 export { default as RequestsMenu } from "./RequestsMenu";
 export { default as SettingsMenu } from "./SettingsMenu";
 export { default as StaffManageMenu } from "./AdminStaffManagementMenu";
