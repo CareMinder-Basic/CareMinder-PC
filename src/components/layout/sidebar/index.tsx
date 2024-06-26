@@ -1,6 +1,5 @@
 import AdminSidebar from "./AdminSidebar";
-import MainUserSidebar from "./MainUserSidebar";
-import StaffSidebar from "./StaffSidebar";
+import UserSidebar from "./UserSidebar";
 
 import { userState } from "@libraries/recoil";
 import { Stack, styled } from "@mui/material";
@@ -12,9 +11,8 @@ export default function Sidebar() {
   const renderSidebar = () => {
     switch (user?.type) {
       case "main":
-        return <MainUserSidebar />;
       case "staff":
-        return <StaffSidebar />;
+        return <UserSidebar />;
       case "admin":
         return <AdminSidebar />;
       default:
@@ -25,6 +23,8 @@ export default function Sidebar() {
   return <Layout>{renderSidebar()}</Layout>;
 }
 
+/** styles */
+
 const Layout = styled(Stack)(({ theme }) => ({
   position: "fixed",
   left: 0,
@@ -34,6 +34,8 @@ const Layout = styled(Stack)(({ theme }) => ({
   minHeight: "max-content",
   height: "calc(100vh - 64px)",
 
+  alignItems: "center",
+  gap: "14px",
   padding: "16px 0",
 
   backgroundColor: theme.palette.primary.main,
