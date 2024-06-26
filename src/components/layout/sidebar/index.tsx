@@ -3,7 +3,7 @@ import MainUserSidebar from "./MainUserSidebar";
 import StaffSidebar from "./StaffSidebar";
 
 import { userState } from "@libraries/recoil";
-import { Box, styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import { useRecoilValue } from "recoil";
 
 export default function Sidebar() {
@@ -25,16 +25,16 @@ export default function Sidebar() {
   return <Layout>{renderSidebar()}</Layout>;
 }
 
-const Layout = styled(Box)(({ theme }) => ({
+const Layout = styled(Stack)(({ theme }) => ({
+  position: "fixed",
+  left: 0,
+  top: "64px",
+
   width: "72px",
   minHeight: "max-content",
+  height: "calc(100vh - 64px)",
 
-  paddingTop: "80px", // header
-  paddingBottom: "16px",
-
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  padding: "16px 0",
 
   backgroundColor: theme.palette.primary.main,
 }));
