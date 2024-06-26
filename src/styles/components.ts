@@ -3,7 +3,10 @@ import palette from "@styles/palette";
 
 const components: Components<Omit<Theme, "components">> = {
   MuiButton: {
-    defaultProps: {},
+    defaultProps: {
+      disableRipple: true,
+      disableElevation: true,
+    },
     variants: [
       {
         props: { variant: "text" },
@@ -30,11 +33,7 @@ const components: Components<Omit<Theme, "components">> = {
     ],
     styleOverrides: {
       root: {
-        "fontWeight": 700,
-        "boxShadow": "none",
-        "&:hover": {
-          boxShadow: "none",
-        },
+        fontWeight: 700,
       },
     },
   },
