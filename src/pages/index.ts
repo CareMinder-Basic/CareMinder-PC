@@ -1,9 +1,10 @@
-export { default as AdminStaffManagementPage } from "./AdminStaffManagementPage";
-export { default as AdminWardManagementPage } from "./AdminWardManagementPage";
-export { default as CompletedRequestsPage } from "./CompletedRequestsPage";
-export { default as DietPage } from "./DietPage";
-export { default as HomePage } from "./HomePage";
-export { default as NoticePage } from "./NoticePage";
-export { default as PatientManagementPage } from "./PatientManagementPage";
-export { default as RequestsPage } from "./RequestsPage";
-export { default as SettingsPage } from "./SettingsPage";
+export { default as AdminStaffManagementPage } from "./admin/AdminStaffManagementPage";
+export { default as AdminWardManagementPage } from "./admin/AdminWardManagementPage";
+
+export { default as CompletedRequestsPage } from "./user/CompletedRequestsPage";
+export { default as DietPage } from "./user/DietPage";
+export { default as HomePage } from "./user/HomePage";
+export { default as NoticePage } from "./user/NoticePage";
+export { default as PatientManagementPage } from "./user/PatientManagementPage";
+export { default as RequestsPage } from "./user/RequestsPage";
+export { default as SettingsPage } from "./user/SettingsPage";
