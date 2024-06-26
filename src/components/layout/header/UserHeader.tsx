@@ -1,3 +1,12 @@
+import SignOutButton from "./SignOutButton";
+import { Typography } from "@mui/material";
+
 export default function UserHeader() {
-  return <>UserHeader</>;
+  return (
+    <>
+      <Typography>
+        <SignOutButton />
+      </Typography>
+    </>
+  );
 }
