@@ -4,7 +4,7 @@ import { ProtectedLayout } from "@components/layout";
 
 const routes: RouteObject[] = [
   {
-    path: RoutePath.Index,
+    path: RoutePath.Home,
     element: <ProtectedLayout />,
   },
   { path: "*", element: <>not found page</> },
