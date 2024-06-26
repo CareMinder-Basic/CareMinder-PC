@@ -1,5 +1,5 @@
 import { ReactComponent as Notice } from "@assets/menuIcons/notice.svg";
-import MenuLayout from "@components/layout/sidebar/menu/MenuLayout";
+import MenuLayout from "./MenuLayout";
 import RoutePath from "@routes/routePath";
 
 export default function PatientManageMenu() {
