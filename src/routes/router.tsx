@@ -1,7 +1,7 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import RoutePath from "@routes/routePath";
-import { ProtectedLayout } from "@components/layout";
-import ProtectedRoute from "@routes/ProtectedRoute";
+import { AuthenticatedLayout } from "@components/layout";
+import AuthorizedRoute from "@routes/AuthorizedRoute";
 import {
   AdminStaffManagementPage,
   AdminWardManagementPage,
@@ -17,10 +17,10 @@ import {
 const routes: RouteObject[] = [
   {
     path: RoutePath.Home,
-    element: <ProtectedLayout />,
+    element: <AuthenticatedLayout />,
     children: [
       {
-        element: <ProtectedRoute allowedRoles={["main", "staff"]} />,
+        element: <AuthorizedRoute allowedRoles={["main", "staff"]} />,
         children: [
           { index: true, element: <HomePage /> },
           { path: RoutePath.CompletedRequests, element: <CompletedRequestsPage /> },
@@ -33,7 +33,7 @@ const routes: RouteObject[] = [
       },
       {
         path: RoutePath.AdminWardManagement,
-        element: <ProtectedRoute allowedRoles={["admin"]} />,
+        element: <AuthorizedRoute allowedRoles={["admin"]} />,
         children: [
           { index: true, element: <AdminWardManagementPage /> },
           { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },

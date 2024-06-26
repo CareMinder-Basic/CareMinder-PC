@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
 import RoutePath from "@routes/routePath";
 
-export default function ProtectedLayout({ children }: PropsWithChildren) {
+export default function AuthenticatedLayout({ children }: PropsWithChildren) {
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [isChecking, setIsChecking] = useState(true);
