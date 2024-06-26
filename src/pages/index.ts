@@ -1,0 +1,9 @@
+export { default as AdminStaffManagementPage } from "./AdminStaffManagementPage";
+export { default as AdminWardManagementPage } from "./AdminWardManagementPage";
+export { default as CompletedRequestsPage } from "./CompletedRequestsPage";
+export { default as DietPage } from "./DietPage";
+export { default as HomePage } from "./HomePage";
+export { default as NoticePage } from "./NoticePage";
+export { default as PatientManagementPage } from "./PatientManagementPage";
+export { default as RequestsPage } from "./RequestsPage";
+export { default as SettingsPage } from "./SettingsPage";

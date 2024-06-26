@@ -14,7 +14,7 @@ export default function MenuLayout({
   children,
 }: PropsWithChildren<PageButtonProps>) {
   const { pathname } = useLocation();
-  const isActive = pathname === routePath || pathname.startsWith(`${routePath}/`);
+  const isActive = pathname === routePath;
 
   return (
     <Container>

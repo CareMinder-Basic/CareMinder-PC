@@ -8,6 +8,8 @@ const RoutePath = {
   Settings: "/settings",
   AdminWardManagement: "/admin",
   AdminStaffManagement: "/admin/staff",
+
+  Signin: "/sign-in",
 } as const;
 
 export default RoutePath;
