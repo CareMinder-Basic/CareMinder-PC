@@ -11,7 +11,7 @@ export default function SigninPage() {
 
   return (
     <Grid container>
-      <Thumbnail isAdmin />
+      <Thumbnail />
       <Container item xs>
         <Content>
           <SigninHeader />
