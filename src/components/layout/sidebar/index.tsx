@@ -33,6 +33,7 @@ const Layout = styled(Stack)(({ theme }) => ({
   width: "72px",
   minHeight: "max-content",
   height: "calc(100vh - 64px)",
+  overflowY: "auto",
 
   alignItems: "center",
   gap: "14px",
