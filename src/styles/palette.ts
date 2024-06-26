@@ -2,7 +2,8 @@ const CMColors = {
   primary: {
     a0: "#000000",
     a60: "#5D6DBE",
-    a90: "#EFF1F9",
+    a90: "#AFB6DB",
+    a95: "#EFF1F9",
     a100: "#FFFFFF",
   },
   black: "#000000",
