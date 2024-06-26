@@ -13,7 +13,7 @@ export default function Thumbnail({ isAdmin = false }: ThumbnailProps) {
       component="img"
       src={isAdmin ? AdminImage : WardImage}
       alt="CareMinder Thumbnail"
-      sx={{ width: "1180px", maxHeight: "100vh", objectFit: "cover" }}
+      sx={{ loading: "lazy", width: "1180px", maxHeight: "100vh", objectFit: "cover" }}
     />
   );
 }
