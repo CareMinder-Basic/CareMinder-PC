@@ -4,8 +4,10 @@ import RoutePath from "@routes/routePath";
 
 export default function AdminWardManagementMenu() {
   return (
-    <MenuLayout routePath={RoutePath.AdminWardManagement} pageName={`병동\n계정 관리`}>
-      <Settings />
-    </MenuLayout>
+    <MenuLayout
+      routePath={RoutePath.AdminWardManagement}
+      pageName={`병동\n계정 관리`}
+      icon={Settings}
+    />
   );
 }
