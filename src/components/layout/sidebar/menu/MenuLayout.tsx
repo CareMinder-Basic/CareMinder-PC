@@ -1,25 +1,22 @@
-import { PropsWithChildren } from "react";
+import { FunctionComponent } from "react";
 
-import { Link, Stack, styled, SxProps, Theme, Typography } from "@mui/material";
+import { Link, Stack, styled, SvgIcon, SxProps, Theme, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 type PageButtonProps = {
   routePath: string;
   pageName: string;
+  icon: FunctionComponent<React.SVGProps<SVGSVGElement>>;
 };
 
-export default function MenuLayout({
-  pageName,
-  routePath,
-  children,
-}: PropsWithChildren<PageButtonProps>) {
+export default function MenuLayout({ pageName, routePath, icon }: PageButtonProps) {
   const { pathname } = useLocation();
   const isActive = pathname === routePath;
 
   return (
     <Container>
       <Link href={routePath} sx={useMenuButtonStyles(isActive)}>
-        {children}
+        <SvgIcon component={icon} inheritViewBox />
       </Link>
       <Typography variant="h5" sx={getTypographyStyles(isActive)}>
         {pageName}
@@ -45,9 +42,8 @@ const useMenuButtonStyles = (isActive: boolean): SxProps<Theme> => ({
   justifyContent: "center",
   alignItems: "center",
 
-  fill: theme => theme.palette.primary[isActive ? "contrastText" : "main"],
   backgroundColor: theme => theme.palette.primary[isActive ? "light" : "main"],
-  color: theme => theme.palette.primary[isActive ? "contrastText" : "main"],
+  color: theme => theme.palette.primary[isActive ? "contrastText" : "light"],
 });
 
 /** styles */
