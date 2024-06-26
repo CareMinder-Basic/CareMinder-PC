@@ -33,7 +33,40 @@ const components: Components<Omit<Theme, "components">> = {
     ],
     styleOverrides: {
       root: {
-        fontWeight: 700,
+        fontWeight: 600,
+        padding: "6px 16px",
+        borderRadius: "6px",
+        fontSize: "14px",
+        lineHeight: "20px",
+        letterSpacing: "-0.03em",
+      },
+    },
+  },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: {
+        color: palette.text.primary,
+        fontSize: "22px",
+      },
+    },
+  },
+  MuiTextField: {
+    defaultProps: {
+      fullWidth: true,
+    },
+  },
+  MuiOutlinedInput: {
+    styleOverrides: {
+      root: {
+        "fontSize": "22px",
+        "borderRadius": "12px",
+        "&.Mui-disabled": {
+          ".MuiOutlinedInput-notchedOutline": {
+            color: palette.text.primary,
+            borderColor: palette.action.disabled,
+          },
+          "backgroundColor": palette.background.default,
+        },
       },
     },
   },
