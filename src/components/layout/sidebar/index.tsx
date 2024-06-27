@@ -19,7 +19,6 @@ export default function Sidebar() {
           staff: <UserSidebar />,
           admin: <AdminSidebar />,
         }}
-        defaultComponent={null}
       />
     </Layout>
   );
