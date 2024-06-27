@@ -5,6 +5,7 @@ import { PropsWithChildren, ReactElement } from "react";
 export type ModalProps = {
   title?: string | ReactElement;
   footer?: ReactElement;
+  onClose: (event?: object, reason?: "backdropClick" | "escapeKeyDown") => void;
 } & Omit<MuiModalProps, "children">;
 
 export default function Modal({
@@ -29,11 +30,12 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialog-paper": {
     borderRadius: "24px",
     minWidth: "300px",
+    width: "100%",
   },
   "& .MuiDialogTitle-root": {
     fontSize: "18px",
     fontWeight: 700,
-    color: theme.palette.primary.dark,
+    color: theme.palette.text.primary,
     alignSelf: "center",
     padding: "12px",
     paddingTop: "28px",
