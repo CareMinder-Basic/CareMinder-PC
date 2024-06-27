@@ -1,4 +1,4 @@
-import { Thumbnail, SigninHeader, SigninForm, ActionButton } from "@components/signin";
+import { Thumbnail, CreateAdminButton, SigninHeader, SigninForm } from "@components/signin";
 import { useSignin } from "@hooks/mutation";
 import { SigninFormData } from "@models/signin";
 import { Divider, Grid, Link, Stack, styled, Typography } from "@mui/material";
@@ -17,7 +17,7 @@ export default function AdminSigninPage() {
           <SigninHeader />
           <UserType variant="h1">어드민</UserType>
           <SigninForm form={form} onSubmit={signin} />
-          <ActionButton>어드민 계정 생성</ActionButton>
+          <CreateAdminButton />
         </Content>
         <Footer divider={<Divider orientation="vertical" />}>
           {/* Todo */}
