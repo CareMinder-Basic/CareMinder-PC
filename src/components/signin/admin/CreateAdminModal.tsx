@@ -1,10 +1,12 @@
 import { CMModal, CMModalProps, ModalActionButton } from "@components/common";
 import InputField from "@components/signin/admin/InputField";
+import { useCreateAdmin } from "@hooks/mutation";
 import { AdminUserField, NewAdminUser } from "@models/user";
 import { Checkbox, Container, FormControlLabel, Stack, styled, Typography } from "@mui/material";
 import { SwitchCase } from "@toss/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 type Step = "어드민 계정 생성 약관 동의서" | "어드민 계정 생성";
 
@@ -22,6 +24,7 @@ const defaultValues: NewAdminUser = {
 
 export default function CreateAdminModal({ onClose, ...props }: CMModalProps) {
   const [step, setStep] = useState<Step>("어드민 계정 생성 약관 동의서");
+  const { mutate, isPending } = useCreateAdmin();
 
   const form = useForm<NewAdminUser>({
     defaultValues,
@@ -33,8 +36,15 @@ export default function CreateAdminModal({ onClose, ...props }: CMModalProps) {
   const toggle = () => setChecked(prev => !prev);
 
   const onSubmit: SubmitHandler<NewAdminUser> = data => {
-    data;
-    // 추가하기 로직
+    mutate(data, {
+      onSuccess: () => {
+        toast.success("어드민 계정 생성이 완료되었습니다.");
+        onClose();
+      },
+      onError: error => {
+        toast.error(error.message);
+      },
+    });
   };
 
   return (
@@ -66,7 +76,9 @@ export default function CreateAdminModal({ onClose, ...props }: CMModalProps) {
                 >
                   취소
                 </ModalActionButton>
-                <ModalActionButton onClick={handleSubmit(onSubmit)}>추가하기</ModalActionButton>
+                <ModalActionButton disabled={isPending} onClick={handleSubmit(onSubmit)}>
+                  추가하기
+                </ModalActionButton>
               </>
             ),
           }}
