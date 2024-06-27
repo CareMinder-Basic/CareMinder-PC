@@ -51,6 +51,9 @@ const components: Components<Omit<Theme, "components">> = {
         transform: "none",
         fontSize: "14px",
       },
+      asterisk: {
+        color: palette.primary.main,
+      },
     },
   },
   MuiTextField: {
@@ -61,7 +64,7 @@ const components: Components<Omit<Theme, "components">> = {
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        "fontSize": "22px",
+        "fontSize": "16px",
         "borderRadius": "12px",
         "&.Mui-disabled": {
           ".MuiOutlinedInput-notchedOutline": {
