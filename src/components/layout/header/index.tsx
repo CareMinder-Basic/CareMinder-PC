@@ -3,27 +3,26 @@ import UserHeader from "./UserHeader";
 import { ReactComponent as Logo } from "@assets/full-logo.svg";
 
 import { userState } from "@libraries/recoil";
+import { UserType } from "@models/user";
 import { Box, styled } from "@mui/material";
+import { SwitchCase } from "@toss/react";
 import { useRecoilValue } from "recoil";
 
 export default function Header() {
   const user = useRecoilValue(userState);
 
-  const renderHeader = () => {
-    switch (user?.type) {
-      case "main":
-      case "staff":
-        return <UserHeader />;
-      case "admin":
-      default:
-        return null;
-    }
-  };
-
   return (
     <Layout>
       <Logo />
-      {renderHeader()}
+      <SwitchCase
+        value={user?.type as UserType}
+        caseBy={{
+          main: <UserHeader />,
+          staff: <UserHeader />,
+          admin: null,
+        }}
+        defaultComponent={null}
+      />
     </Layout>
   );
 }
