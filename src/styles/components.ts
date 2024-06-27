@@ -26,7 +26,7 @@ const components: Components<Omit<Theme, "components">> = {
           "backgroundColor": palette.primary.main,
           "color": palette.primary.contrastText,
           "&:hover": {
-            backgroundColor: palette.primary.main,
+            backgroundColor: palette.primary.light,
           },
         },
       },
