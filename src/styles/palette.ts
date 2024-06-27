@@ -29,6 +29,7 @@ const palette = {
   },
   secondary: {
     main: CMColors.status.wait,
+    light: CMColors.primary.a95,
     contrastText: CMColors.white,
   },
   error: {
