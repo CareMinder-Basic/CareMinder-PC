@@ -90,6 +90,11 @@ const components: Components<Omit<Theme, "components">> = {
       root: { margin: 0, marginTop: "24px", display: "flex", justifyContent: "center", gap: "8px" },
     },
   },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: { marginLeft: 0, marginRight: 0 },
+    },
+  },
   MuiCheckbox: {
     defaultProps: {
       disableRipple: true,

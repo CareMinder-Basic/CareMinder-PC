@@ -6,4 +6,13 @@ export type User = {
   type: UserType;
 };
 
-export default User;
+export type AdminUser = {
+  name: string;
+  hospitalName: string;
+  hospitalAddress: string;
+  registrationNumber: string;
+  username: string;
+  password: string;
+  phoneNumber: string;
+  email: string;
+};
