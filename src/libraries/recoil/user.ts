@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { User } from "@models/index";
+import { User } from "@models/user";
 import { atom } from "recoil";
 
 const userState = atom<User | null>({
