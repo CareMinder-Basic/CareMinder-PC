@@ -16,3 +16,11 @@ export type AdminUser = {
   phoneNumber: string;
   email: string;
 };
+
+export type NewAdminUser = AdminUser & { confirmPassword: string };
+
+export type AdminUserField = {
+  name: keyof NewAdminUser;
+  label: string;
+  placeholder: string;
+};

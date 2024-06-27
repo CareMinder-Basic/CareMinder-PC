@@ -1,19 +1,12 @@
 import { CMModal, CMModalProps, ModalActionButton } from "@components/common";
 import InputField from "@components/signin/admin/InputField";
-import { AdminUser } from "@models/user";
+import { AdminUserField, NewAdminUser } from "@models/user";
 import { Checkbox, Container, FormControlLabel, Stack, styled, Typography } from "@mui/material";
 import { SwitchCase } from "@toss/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Step = "어드민 계정 생성 약관 동의서" | "어드민 계정 생성";
-
-export type NewAdminUser = AdminUser & { confirmPassword: string };
-export type AdminUserField = {
-  name: keyof NewAdminUser;
-  label: string;
-  placeholder: string;
-};
 
 const defaultValues: NewAdminUser = {
   name: "",

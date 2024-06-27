@@ -1,5 +1,4 @@
-import type { AdminUserField, NewAdminUser } from "./CreateAdminModal";
-
+import { AdminUserField, NewAdminUser } from "@models/user";
 import { FormControl, FormHelperText, InputLabel, TextField } from "@mui/material";
 import { validateBusinessNumber } from "@utils/signin";
 import { Controller, UseFormReturn } from "react-hook-form";

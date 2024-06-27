@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { UserType } from "@models/index";
+import { UserType } from "@models/user";
 import { userState } from "@libraries/recoil";
 import { Box, CircularProgress } from "@mui/material";
 import { useCallbackOnce } from "@toss/react";
