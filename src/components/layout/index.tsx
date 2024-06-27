@@ -7,20 +7,25 @@ import { userState } from "@libraries/recoil";
 import { Outlet, useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
 import RoutePath from "@routes/routePath";
+import { useCallbackOnce } from "@toss/react";
 
 export default function AuthenticatedLayout() {
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const [isChecking, setIsChecking] = useState(true);
 
+  const navigateSignin = useCallbackOnce(() => {
+    console.error("로그인이 필요한 서비스입니다.");
+    navigate(RoutePath.Signin);
+  }, []);
+
   useEffect(() => {
     if (user) {
       setIsChecking(false);
     } else {
-      console.error("로그인이 필요한 서비스입니다.");
-      navigate(RoutePath.Signin);
+      navigateSignin();
     }
-  }, [user, navigate]);
+  }, [user, navigate, navigateSignin]);
 
   if (isChecking) {
     return null;
