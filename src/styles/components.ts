@@ -45,8 +45,11 @@ const components: Components<Omit<Theme, "components">> = {
   MuiInputLabel: {
     styleOverrides: {
       root: {
-        color: palette.text.primary,
-        fontSize: "22px",
+        color: palette.primary.dark,
+        position: "relative",
+        fontWeight: 600,
+        transform: "none",
+        fontSize: "14px",
       },
     },
   },
@@ -77,6 +80,20 @@ const components: Components<Omit<Theme, "components">> = {
         color: palette.text.primary,
         opacity: 0.6,
       },
+    },
+  },
+  MuiFormControlLabel: {
+    styleOverrides: {
+      root: { margin: 0, marginTop: "24px", display: "flex", justifyContent: "center", gap: "8px" },
+    },
+  },
+  MuiCheckbox: {
+    defaultProps: {
+      disableRipple: true,
+      size: "large",
+    },
+    styleOverrides: {
+      root: { padding: 0, borderRadius: "4px" },
     },
   },
 };
