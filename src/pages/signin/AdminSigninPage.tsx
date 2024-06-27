@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 
 export default function AdminSigninPage() {
   const form = useForm<SigninFormData>();
-  const loginMutation = useSignin();
+  const { mutate: signin } = useSignin();
 
   return (
     <Grid container>
@@ -16,7 +16,7 @@ export default function AdminSigninPage() {
         <Content>
           <SigninHeader />
           <UserType variant="h1">어드민</UserType>
-          <SigninForm form={form} onSubmit={loginMutation.mutate} />
+          <SigninForm form={form} onSubmit={signin} />
         </Content>
         <Footer divider={<Divider orientation="vertical" />}>
           {/* Todo */}
