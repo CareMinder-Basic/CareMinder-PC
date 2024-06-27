@@ -2,25 +2,27 @@ import AdminSidebar from "./AdminSidebar";
 import UserSidebar from "./UserSidebar";
 
 import { userState } from "@libraries/recoil";
+import { UserType } from "@models/user";
 import { Stack, styled } from "@mui/material";
+import { SwitchCase } from "@toss/react";
 import { useRecoilValue } from "recoil";
 
 export default function Sidebar() {
   const user = useRecoilValue(userState);
 
-  const renderSidebar = () => {
-    switch (user?.type) {
-      case "main":
-      case "staff":
-        return <UserSidebar />;
-      case "admin":
-        return <AdminSidebar />;
-      default:
-        return null;
-    }
-  };
-
-  return <Layout>{renderSidebar()}</Layout>;
+  return (
+    <Layout>
+      <SwitchCase
+        value={user?.type as UserType}
+        caseBy={{
+          main: <UserSidebar />,
+          staff: <UserSidebar />,
+          admin: <AdminSidebar />,
+        }}
+        defaultComponent={null}
+      />
+    </Layout>
+  );
 }
 
 /** styles */
