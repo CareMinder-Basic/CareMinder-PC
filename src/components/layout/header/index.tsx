@@ -21,7 +21,6 @@ export default function Header() {
           staff: <UserHeader />,
           admin: null,
         }}
-        defaultComponent={null}
       />
     </Layout>
   );
