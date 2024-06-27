@@ -7,5 +7,10 @@ const signin = async (data: SigninFormData) => {
 };
 
 export default function useSignin() {
-  return useMutation({ mutationFn: signin });
+  return useMutation({
+    mutationFn: signin,
+    onSuccess: () => {
+      // Todo: page routing
+    },
+  });
 }
