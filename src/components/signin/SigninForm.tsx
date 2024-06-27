@@ -1,6 +1,6 @@
 import { SigninFormData } from "@models/signin";
 
-import { Button, Stack, styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
 import TextField from "./TextField";
 
@@ -16,14 +16,18 @@ export default function SigninForm({ form, onSubmit }: SigninFormProps) {
     <Container onSubmit={handleSubmit(onSubmit)}>
       <TextField label="ID" name="id" form={form} />
       <TextField label="PW" name="password" form={form} />
-      <SigninButton variant="contained">login</SigninButton>
+      <SigninButton type="submit" variant="contained">
+        login
+      </SigninButton>
     </Container>
   );
 }
 
 /** styles */
 
-const Container = styled(Stack)({
+const Container = styled("form")({
+  display: "flex",
+  flexDirection: "column",
   alignItems: "center",
   width: "400px",
 });
