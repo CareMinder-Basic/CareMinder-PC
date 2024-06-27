@@ -22,12 +22,15 @@ export default function TextField({ label, name, form }: TextFieldProps) {
 
   return (
     <MuiTextField
-      label={label}
+      placeholder={label}
       variant="outlined"
       {...form.register(name)}
       InputProps={{
         startAdornment: (
-          <InputAdornment position="start" sx={{ paddingLeft: "8px" }}>
+          <InputAdornment
+            position="start"
+            sx={{ paddingLeft: "8px", color: theme => theme.palette.grey[500] }}
+          >
             <Icon sx={{ fontSize: 28 }} />
           </InputAdornment>
         ),
