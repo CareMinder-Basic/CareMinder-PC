@@ -1,7 +1,7 @@
-import { Thumbnail, SigninHeader, SigninForm } from "@components/signin";
+import { Thumbnail, SigninHeader, SigninForm, UserTypeTag } from "@components/signin";
 import { useSignin } from "@hooks/mutation";
 import { SigninFormData } from "@models/signin";
-import { Divider, Grid, Link, Stack, styled, Typography } from "@mui/material";
+import { Divider, Grid, Link, Stack, styled } from "@mui/material";
 import RoutePath from "@routes/routePath";
 import { useForm } from "react-hook-form";
 
@@ -15,7 +15,7 @@ export default function SigninPage() {
       <Container item xs>
         <Content>
           <SigninHeader />
-          <UserType variant="h1">병동</UserType>
+          <UserTypeTag type="main" />
           <SigninForm form={form} onSubmit={loginMutation.mutate} />
         </Content>
         <Footer divider={<Divider orientation="vertical" />}>
@@ -44,12 +44,6 @@ const Container = styled(Grid)({
   flexDirection: "column",
   justifyContent: "space-between",
 });
-
-const UserType = styled(Typography)(({ theme }) => ({
-  marginTop: "60px",
-  marginBottom: "30px",
-  color: theme.palette.primary.main,
-}));
 
 const Content = styled(Stack)({
   flex: 1,
