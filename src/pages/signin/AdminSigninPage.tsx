@@ -1,7 +1,13 @@
-import { Thumbnail, CreateAdminButton, SigninHeader, SigninForm } from "@components/signin";
+import {
+  Thumbnail,
+  CreateAdminButton,
+  SigninHeader,
+  SigninForm,
+  UserTypeTag,
+} from "@components/signin";
 import { useSignin } from "@hooks/mutation";
 import { SigninFormData } from "@models/signin";
-import { Divider, Grid, Link, Stack, styled, Typography } from "@mui/material";
+import { Divider, Grid, Link, Stack, styled } from "@mui/material";
 import RoutePath from "@routes/routePath";
 import { useForm } from "react-hook-form";
 
@@ -15,7 +21,7 @@ export default function AdminSigninPage() {
       <Container item xs>
         <Content>
           <SigninHeader />
-          <UserType variant="h1">어드민</UserType>
+          <UserTypeTag type="admin" />
           <SigninForm form={form} onSubmit={signin} />
           <CreateAdminButton />
         </Content>
@@ -47,12 +53,6 @@ const Container = styled(Grid)({
   flexDirection: "column",
   justifyContent: "space-between",
 });
-
-const UserType = styled(Typography)(({ theme }) => ({
-  marginTop: "60px",
-  marginBottom: "30px",
-  color: theme.palette.primary.main,
-}));
 
 const Content = styled(Stack)({
   flex: 1,
