@@ -1,4 +1,4 @@
-import { ModalProps as MuiModalProps, styled } from "@mui/material";
+import { DialogProps, styled } from "@mui/material";
 import { Dialog as Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { PropsWithChildren, ReactElement } from "react";
 
@@ -6,7 +6,7 @@ export type ModalProps = {
   title?: string | ReactElement;
   footer?: ReactElement;
   onClose: (event?: object, reason?: "backdropClick" | "escapeKeyDown") => void;
-} & Omit<MuiModalProps, "children">;
+} & Omit<DialogProps, "children">;
 
 export default function Modal({
   open,
@@ -14,9 +14,10 @@ export default function Modal({
   title,
   footer,
   children,
+  ...props
 }: PropsWithChildren<ModalProps>) {
   return (
-    <StyledDialog maxWidth="xs" open={open} onClose={onClose}>
+    <StyledDialog maxWidth="xs" open={open} onClose={onClose} {...props}>
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>{children}</DialogContent>
       {footer && <DialogActions>{footer}</DialogActions>}
