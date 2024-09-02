@@ -32,11 +32,9 @@ const Layout = styled(Box)(({ theme }) => ({
   left: 0,
   width: "100%",
   height: "64px",
-
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-
   padding: "14px 28px",
 
   backgroundColor: theme.palette.primary.main,
