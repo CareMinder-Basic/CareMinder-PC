@@ -31,7 +31,7 @@ export default CInput;
 
 /** styled */
 
-const StyledTextField = styled(TextField)(({}) => ({
+const StyledTextField = styled(TextField)({
   "width": "100%",
   "height": "100%",
   "borderRadius": "6px",
@@ -46,7 +46,7 @@ const StyledTextField = styled(TextField)(({}) => ({
   "& .MuiInputBase-input": {
     color: "black",
   },
-}));
+});
 
 //예시
 
