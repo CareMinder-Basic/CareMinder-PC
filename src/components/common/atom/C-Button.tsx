@@ -73,3 +73,14 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     },
   }),
 }));
+
+/* 
+EX)
+<CButton buttonType="primary">파란색 원형 기본</CButton>
+<CButton buttonType="primaryWhite">하얀색 원형 기본</CButton>
+<CButton buttonType="primarySpaure">파란색 사각</CButton>
+<CButton buttonType="primarySpaureWhite">하얀색 사각</CButton>
+<CButton buttonType="primarySpaureLong">파란색 긴 사각</CButton>
+<CButton buttonType="login">로그인</CButton>
+
+\*/

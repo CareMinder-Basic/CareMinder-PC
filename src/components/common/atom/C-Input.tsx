@@ -48,9 +48,9 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-//예시
-
-/* <form> // 상위 요소에서 width와 hegith 를 정해주세요
+/* 
+EX)
+<form> // 상위 요소에서 width와 hegith 를 정해주세요
   <label htmlFor=""></label>
   <CInput 
   />
