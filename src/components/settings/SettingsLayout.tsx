@@ -50,7 +50,7 @@ const CloseButton = styled(Close)({
 });
 
 const Content = styled(Stack)({
-  margin: "30px 0 60px 0",
+  margin: "30px 0 30px 0",
   flex: 1,
 
   alignItems: "center",
