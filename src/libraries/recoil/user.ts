@@ -4,12 +4,7 @@ import { atom } from "recoil";
 
 const userState = atom<User | null>({
   key: `userState${uuidv4()}`,
-  // default: null,
-  default: {
-    id: 123,
-    name: "string",
-    type: "staff",
-  },
+  default: { id: 111, name: "테스트계정", type: "main" },
 });
 
 export default userState;

@@ -4,10 +4,11 @@ import Header from "./header";
 import { Box, Stack, styled } from "@mui/material";
 import { useEffect, useState } from "react";
 import { userState } from "@libraries/recoil";
-import { Outlet, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
 import RoutePath from "@routes/routePath";
 import { useCallbackOnce } from "@toss/react";
+import InnerContainer from "./inner/InnerContainer";
 
 export default function AuthenticatedLayout() {
   const navigate = useNavigate();
@@ -37,9 +38,7 @@ export default function AuthenticatedLayout() {
       <Body>
         <Sidebar />
         <OuterContainer>
-          <InnerContainer>
-            <Outlet />
-          </InnerContainer>
+          <InnerContainer />
         </OuterContainer>
       </Body>
     </Container>
@@ -65,9 +64,9 @@ const OuterContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
 }));
 
-const InnerContainer = styled(Stack)(({ theme }) => ({
-  margin: "30px",
-  padding: "30px",
-  borderRadius: "24px",
-  backgroundColor: theme.palette.background.paper,
-}));
+// const InnerContainer = styled(Stack)(({ theme }) => ({
+//   margin: "30px",
+//   padding: "30px",
+//   borderRadius: "24px",
+//   backgroundColor: theme.palette.background.paper,
+// }));
