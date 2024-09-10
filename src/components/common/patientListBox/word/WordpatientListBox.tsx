@@ -29,7 +29,7 @@ function WordPatientListBox({ isAccept }: { isAccept: boolean }) {
 
   return (
     <InnerContainer color={"#D6F0FF"}>
-      <Title color={"#30B4FF"}>경증환자실1 (T13)</Title>
+      <Title color={select.Nurse.dark}>경증환자실1 (T13)</Title>
       <Bottom>
         <TxtBox>
           <TxtBoxLeft>
@@ -66,17 +66,18 @@ const Title = styled("div")<{ color: string }>`
 const TxtBox = styled("div")`
   border-radius: 6px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.palette.primary.contrastText};
   padding: 6px 16px 6px 16px;
   font-size: 14px;
   font-weight: 400;
-  color: #000000;
+  color: ${({ theme }) => theme.palette.primary.dark};
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 const TxtBoxLeft = styled("div")``;
 const TxtBoxRight = styled("div")`
-  color: #5e5f65;
+  color: ${({ theme }) => theme.palette.text.primary};
   min-width: 60px;
   text-align: end;
   display: flex;
@@ -105,10 +106,10 @@ const SmallCheck = styled("div")<{ color: string }>`
   width: 20px;
   height: 18px;
   display: flex;
-  padding-top: 1px;
   justify-content: center;
+  padding-top: 1px;
   margin-right: 6px;
   font-size: 13px;
-  color: white;
+  border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   font-weight: 900;
 `;

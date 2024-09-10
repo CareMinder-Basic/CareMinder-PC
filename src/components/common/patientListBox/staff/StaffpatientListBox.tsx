@@ -84,11 +84,11 @@ const Title = styled("div")<{ color: string }>`
 const TxtBox = styled("div")`
   border-radius: 6px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.palette.primary.contrastText};
   padding: 6px 16px 6px 16px;
   font-size: 14px;
   font-weight: 400;
-  color: #000000;
+  color: ${({ theme }) => theme.palette.primary.dark};
   display: flex;
   justify-content: space-between;
 `;
@@ -97,7 +97,7 @@ const TxtBoxLeft = styled("div")`
   align-items: center;
 `;
 const TxtBoxRight = styled("div")`
-  color: #5e5f65;
+  color: ${({ theme }) => theme.palette.text.primary};
   min-width: 60px;
   text-align: end;
 `;
@@ -128,11 +128,11 @@ const SmallCheck = styled("div")<{ color: string }>`
   justify-content: center;
   margin-right: 6px;
   font-size: 13px;
-  color: white;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
   font-weight: 900;
 `;
 
 const ChatContainer = styled("div")`
-  border-top: 1px solid #ffffff;
+  border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   margin-top: 12px;
 `;
