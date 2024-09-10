@@ -122,7 +122,7 @@ const SmallCheck = styled("div")<{ color: string }>`
   background-color: ${({ color }) => color};
   border-radius: 50%;
   width: 20px;
-  height: 18px;
+  height: 20px;
   display: flex;
   padding-top: 1px;
   justify-content: center;
@@ -130,6 +130,7 @@ const SmallCheck = styled("div")<{ color: string }>`
   font-size: 13px;
   color: ${({ theme }) => theme.palette.primary.contrastText};
   font-weight: 900;
+  margin-bottom: 2px;
 `;
 
 const ChatContainer = styled("div")`
