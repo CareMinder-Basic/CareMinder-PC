@@ -6,9 +6,8 @@ const RoutePath = {
   Diet: "/diet",
   Notice: "/notice",
   Settings: "/settings",
-
   AdminWardManagement: "/admin",
-  AdminStaffManagement: "/admin/staff",
+  AdminStaffManagement: "/staff",
 
   Signin: "/sign-in",
   AdminSignin: "/sign-in/admin",
