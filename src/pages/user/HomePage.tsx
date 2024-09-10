@@ -1,16 +1,36 @@
-import { HomeLayout } from "@components/home";
+import layoutState from "@libraries/recoil/layout";
+import { Box, styled } from "@mui/material";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
 
 export default function HomePage() {
-  /**
-   * 대기환자, 수락환자 반반 나누기
-   * slide 버튼 추가
-   * 수락환자 checkBox Design하기 (공용 컴포넌트로 나누기)
-   * checkBox 1~4번째 색상 변경 (완료)
-   * overflow 상황일때 scroll에 대한 부분도 고려 (scroll 유무)
-   */
+  const setlayoutState = useSetRecoilState(layoutState);
+
+  useEffect(() => {
+    setlayoutState("home");
+  }, [setlayoutState]);
+
   return (
     <>
-      <HomeLayout />
+      <>
+        <LeftSection>Left Content</LeftSection>
+        <RightSection>Right Content</RightSection>
+      </>
     </>
   );
 }
+
+const SectionBase = styled(Box)(({ theme }) => ({
+  width: "calc(50% - 15px)",
+  padding: "30px",
+  borderRadius: "24px",
+  backgroundColor: theme.palette.background.paper,
+}));
+
+const LeftSection = styled(SectionBase)({
+  // 왼쪽 컨테이너에 스타일 적용
+});
+
+const RightSection = styled(SectionBase)({
+  // 오른쪽 컨테이너에 스타일 적용
+});
