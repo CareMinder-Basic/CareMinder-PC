@@ -1,4 +1,4 @@
-import SearchBox from "@components/common/SearchBox";
+import SearchBox from "@components/common/SearachBox/SearchBox";
 import SignOutButton from "./SignOutButton";
 import { Box, styled, Typography } from "@mui/material";
 
