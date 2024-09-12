@@ -31,6 +31,7 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
+          { path: RoutePath.AdminWardInOut, element: <AdminWardManagementPage /> },
         ],
       },
       {
