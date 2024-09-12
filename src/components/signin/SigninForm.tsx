@@ -3,6 +3,7 @@ import { SigninFormData } from "@models/signin";
 import { Button, styled } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
 import TextField from "./TextField";
+import CButton from "@components/common/atom/C-Button";
 
 type SigninFormProps = {
   form: UseFormReturn<SigninFormData>;
@@ -16,9 +17,9 @@ export default function SigninForm({ form, onSubmit }: SigninFormProps) {
     <Container onSubmit={handleSubmit(onSubmit)}>
       <TextField label="ID" name="id" form={form} />
       <TextField label="PW" name="password" form={form} />
-      <SigninButton type="submit" variant="contained">
-        login
-      </SigninButton>
+      <CButton buttonType="login" style={{ marginTop: "43.22px" }}>
+        로그인
+      </CButton>
     </Container>
   );
 }
@@ -30,16 +31,4 @@ const Container = styled("form")({
   flexDirection: "column",
   alignItems: "center",
   width: "400px",
-});
-
-const SigninButton = styled(Button)({
-  marginTop: "30px",
-
-  width: "330px",
-  height: "70px",
-
-  padding: "14px 52px",
-
-  borderRadius: "100px",
-  fontSize: "28px",
 });
