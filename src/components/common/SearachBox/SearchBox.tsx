@@ -1,5 +1,5 @@
 import { Box, Input, styled } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchNurses, Nurse, NurseList } from "./const/NurseList";
 import { useDebounce } from "./const/useDebounce";
 import { ListBoxProps, SearchInputProps } from "@models/search";
@@ -17,6 +17,9 @@ export default function SearchBox() {
   const [searching, setSearching] = useState<boolean>(false);
   const [selectedNurse, setSelectedNurse] = useState<string>("");
 
+  const inputRef = useRef<HTMLInputElement>(null);
+  console.log(inputRef);
+
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsOpen(true);
     setQuery(e.target.value);
@@ -33,7 +36,7 @@ export default function SearchBox() {
     searchNurses();
   }, [debouncedQuery]);
 
-  const showList = () => {
+  const handleList = () => {
     setIsOpen(prev => !prev);
     setNurses(NurseList);
   };
@@ -47,13 +50,16 @@ export default function SearchBox() {
   return (
     <SearchInputWrapper>
       <SearchInput
+        ref={inputRef}
         type="search"
         value={query}
         onChange={searchHandler}
+        onFocus={() => setIsOpen(true)}
+        onBlur={() => setIsOpen(false)}
         placeholder="스태프 선택"
         disableUnderline={true}
         startAdornment={
-          <ListBox onClick={showList} isEmpty={selectedNurse}>
+          <ListBox onClick={handleList} isEmpty={selectedNurse}>
             <User style={{ marginBottom: "2px" }} />
             {selectedNurse === "" ? null : (
               <>
@@ -77,7 +83,7 @@ export default function SearchBox() {
                 <NoSearchStaff>검색 결과 없음</NoSearchStaff>
               ) : (
                 nurses.map((nurse, index) => (
-                  <Staff key={index} onClick={() => selectNurse(nurse.name)}>
+                  <Staff key={index} onMouseDown={() => selectNurse(nurse.name)}>
                     {nurse.name}
                   </Staff>
                 ))
