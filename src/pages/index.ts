@@ -3,7 +3,7 @@ export { default as AdminWardManagementPage } from "./admin/AdminWardManagementP
 
 export { default as CompletedRequestsPage } from "./user/CompletedRequestsPage";
 export { default as DietPage } from "./user/DietPage";
-export { default as HomePage } from "./user/HomePage";
+export { default as MainHomePage } from "./user/MainHomePage";
 export { default as NoticePage } from "./user/NoticePage";
 export { default as PatientManagementPage } from "./user/PatientManagementPage";
 export { default as RequestsPage } from "./user/RequestsPage";
