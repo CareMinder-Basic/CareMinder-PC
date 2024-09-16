@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, Typography, styled } from "@mui/material";
+import { Box, Stack, Typography, styled } from "@mui/material";
 import { AdminTable } from "@components/admin";
 import CSwitch from "@components/common/atom/C-Switch";
 import CButton from "@components/common/atom/C-Button";
@@ -24,10 +24,12 @@ const AdminWardInoutManagementPage = () => {
           </AdminInoutSubTitleRightContainer>
         </AdminInoutSubTitleContainer>
       </div>
-      <div>
+      <TableLayout>
         <AdminTable />
-      </div>
-      <footer>페이지 네이션</footer>
+      </TableLayout>
+      <FooterLayout>
+        <div>페이지 네이션</div>
+      </FooterLayout>
     </Container>
   );
 };
@@ -59,6 +61,18 @@ const AdminInoutSubTitleRightContainer = styled(Box)({
 });
 const ButtonLayout = styled(Box)({
   width: "148px",
+});
+const TableLayout = styled(Box)({
+  marginTop: "40px",
+});
+
+const FooterLayout = styled(Box)({
+  paddingTop: "61.27px",
+  // paddingBottom: "48.73px",
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const Title = styled(Typography)(({ theme }) => ({
