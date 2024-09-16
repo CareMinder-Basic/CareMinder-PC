@@ -4,13 +4,14 @@ import RoutePath from "@routes/routePath";
 import { useRecoilValue } from "recoil";
 import { userState } from "@libraries/recoil";
 import { SwitchCase } from "@toss/react";
+import { UserType } from "@models/user";
 
 export default function HomeMenu() {
   const user = useRecoilValue(userState);
 
   return (
     <SwitchCase
-      value={user!.type}
+      value={user?.type as UserType}
       caseBy={{
         main: <MenuLayout routePath={RoutePath.Home} pageName="병동 메인" icon={Home} />,
         staff: (
