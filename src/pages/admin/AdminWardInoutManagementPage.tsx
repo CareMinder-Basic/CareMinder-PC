@@ -1,7 +1,9 @@
-import { Box, Stack, Typography, styled } from "@mui/material";
+import { Box, Stack, SvgIcon, Typography, styled } from "@mui/material";
 import { AdminTable } from "@components/admin";
 import CSwitch from "@components/common/atom/C-Switch";
 import CButton from "@components/common/atom/C-Button";
+import { ReactComponent as ArrayIcon } from "@assets/array.svg";
+import { CloseRounded } from "@mui/icons-material";
 
 const AdminWardInoutManagementPage = () => {
   return (
@@ -14,7 +16,10 @@ const AdminWardInoutManagementPage = () => {
             <div>
               <CSwitch />
             </div>
-            <div>구역 정렬</div>
+            <SectionArrayLayout>
+              <Arraytitle variant="h2">구역 정렬</Arraytitle>
+              <SvgIcon component={ArrayIcon} inheritViewBox />
+            </SectionArrayLayout>
           </AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
             <div>서치바</div>
@@ -88,3 +93,15 @@ const Subtitle = styled(Typography)(({ theme }) => ({
   fontWeight: 500,
   color: theme.palette.primary.dark,
 }));
+const Arraytitle = styled(Typography)(({ theme }) => ({
+  lineHeight: "26px",
+  fontSize: "18px",
+  fontWeight: 500,
+  color: theme.palette.primary.main,
+}));
+
+const SectionArrayLayout = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  gap: "5px",
+});

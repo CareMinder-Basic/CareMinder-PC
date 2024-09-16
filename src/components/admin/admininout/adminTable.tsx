@@ -41,12 +41,26 @@ const AdminTable: FC = () => {
               </td>
               <td>
                 <ComBoxLayout>
-                  <CInput variant={"outlined"}></CInput>
+                  <CInput
+                    variant={"outlined"}
+                    placeholder={"이름"}
+                    onChange={() => null}
+                    value={""}
+                    disabled={false}
+                    id={""}
+                  ></CInput>
                 </ComBoxLayout>
               </td>
               <td>
                 <ComBoxLayout>
-                  <CInput variant={"outlined"}></CInput>
+                  <CInput
+                    variant={"outlined"}
+                    placeholder={"태블릿 이름"}
+                    onChange={() => null}
+                    value={""}
+                    disabled={false}
+                    id={""}
+                  ></CInput>
                 </ComBoxLayout>
               </td>
             </tr>
@@ -62,7 +76,7 @@ export default AdminTable;
 const StTable = styled.table`
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid ${palette.divider};
+
   & thead {
     width: 100%;
     height: 20%;
@@ -81,6 +95,7 @@ const StTable = styled.table`
       padding-bottom: 11.52px;
       padding-top: 11.52px;
       text-align: center;
+      border-bottom: 1px solid ${palette.divider};
     }
   }
 `;
