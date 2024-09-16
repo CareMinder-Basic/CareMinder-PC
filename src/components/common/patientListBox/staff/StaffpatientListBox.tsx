@@ -18,8 +18,10 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
 
   const [isOptions, setIsOptions] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isChatting, setIsChatting] = useState(false);
 
-  const onOptionOnOff = () => {
+  const onOptionOnOff = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (isOptions || isEdit) {
       setIsEdit(false);
       setIsOptions(false);
@@ -27,9 +29,13 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
       setIsOptions(true);
     }
   };
+  const onOpenChatting = () => {
+    if (!isAccept) return;
+    setIsChatting(prev => !prev);
+  };
 
   return (
-    <InnerContainer color={roleColorPick.light}>
+    <InnerContainer color={roleColorPick.light} onClick={onOpenChatting}>
       <Title color={roleColorPick.dark} tabIndex={0} onBlur={() => setIsOptions(false)}>
         <div>{data.place}</div>
         <div>
@@ -60,9 +66,9 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
                 <CComboBox
                   placeholder="간호사"
                   options={[
-                    { label: "ex", id: 1 },
-                    { label: "ex1", id: 2 },
-                    { label: "ex2", id: 3 },
+                    { label: "의사", id: 1 },
+                    { label: "조무사", id: 2 },
+                    { label: "직원", id: 3 },
                   ]}
                 />
               </BoxWrapper>
@@ -82,7 +88,7 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
           {isAccept ? <CheckIcon /> : <ArrowForwardRoundedIcon />}
         </Check>
       </Bottom>
-      {isAccept && (
+      {isAccept && isChatting && (
         <ChatContainer>
           <ChatBox leftorRight="right" />
         </ChatContainer>
