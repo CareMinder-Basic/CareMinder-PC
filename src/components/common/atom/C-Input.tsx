@@ -1,9 +1,9 @@
-import { TextField, styled, InputProps } from "@mui/material";
+import { TextField, styled, InputProps, TextFieldVariants } from "@mui/material";
 import { FC } from "react";
 
 export type CustomInputProps = {
-  variant: string;
-} & InputProps;
+  variant: TextFieldVariants;
+} & Omit<InputProps, "onInvalid">;
 
 const CInput: FC<CustomInputProps> = ({
   placeholder,
@@ -16,6 +16,7 @@ const CInput: FC<CustomInputProps> = ({
 }) => {
   return (
     <StyledTextField
+      // onKeyDown={null}
       id={id}
       placeholder={placeholder}
       disabled={disabled}

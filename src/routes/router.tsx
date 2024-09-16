@@ -6,6 +6,7 @@ import {
   AdminSigninPage,
   AdminStaffManagementPage,
   AdminWardManagementPage,
+  AdminWardInoutManagementPage,
   CompletedRequestsPage,
   DietPage,
   HomePage,
@@ -31,7 +32,7 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
-          { path: RoutePath.AdminWardInOut, element: <AdminWardManagementPage /> },
+          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
         ],
       },
       {
