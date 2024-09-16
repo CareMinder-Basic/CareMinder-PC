@@ -3,7 +3,6 @@ import { AdminTable } from "@components/admin";
 import CSwitch from "@components/common/atom/C-Switch";
 import CButton from "@components/common/atom/C-Button";
 import { ReactComponent as ArrayIcon } from "@assets/array.svg";
-import { CloseRounded } from "@mui/icons-material";
 
 const AdminWardInoutManagementPage = () => {
   return (
@@ -22,7 +21,7 @@ const AdminWardInoutManagementPage = () => {
             </SectionArrayLayout>
           </AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
-            <div>서치바</div>
+            <div></div>
             <ButtonLayout>
               <CButton buttonType={"primarySpaureWhite"}>퇴원 처리</CButton>
             </ButtonLayout>
