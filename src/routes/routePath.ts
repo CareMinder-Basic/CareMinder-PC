@@ -1,5 +1,6 @@
 const RoutePath = {
   Home: "/",
+  StaffHomePage: "/staff",
   Requests: "/request",
   CompletedRequests: "/completed",
   PatientManagement: "/management",

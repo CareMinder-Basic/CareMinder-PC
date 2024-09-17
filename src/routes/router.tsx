@@ -9,13 +9,14 @@ import {
   AdminWardInoutManagementPage,
   CompletedRequestsPage,
   DietPage,
-  HomePage,
   NoticePage,
   PatientManagementPage,
   RequestsPage,
   SettingsPage,
   SigninPage,
 } from "@pages/index";
+import MainHomePage from "@pages/user/MainHomePage";
+import StaffHomePage from "@pages/user/StaffHomePage";
 
 const routes: RouteObject[] = [
   {
@@ -25,7 +26,8 @@ const routes: RouteObject[] = [
       {
         element: <AuthorizedRoute allowedRoles={["main", "staff"]} />,
         children: [
-          { index: true, element: <HomePage /> },
+          { index: true, element: <MainHomePage /> },
+          { path: RoutePath.StaffHomePage, element: <StaffHomePage /> },
           { path: RoutePath.CompletedRequests, element: <CompletedRequestsPage /> },
           { path: RoutePath.Diet, element: <DietPage /> },
           { path: RoutePath.Notice, element: <NoticePage /> },

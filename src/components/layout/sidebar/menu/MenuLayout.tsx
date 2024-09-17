@@ -36,7 +36,7 @@ const getTypographyStyles = (isActive: boolean): SxProps<Theme> => ({
 const useMenuButtonStyles = (isActive: boolean): SxProps<Theme> => ({
   borderRadius: "12px",
   width: "36px",
-  height: "36px",  
+  height: "36px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
