@@ -31,6 +31,7 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     fontSize: "16px",
     lineHeight: "24px",
     fontWeight: "700",
+    width: "100%",
   }),
   ...(buttonType === "primaryWhite" && {
     backgroundColor: theme.palette.primary.contrastText,
@@ -40,10 +41,12 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     lineHeight: "24px",
     fontWeight: "700",
     border: "1px solid #ECECEC",
+    width: "100%",
   }),
   ...(buttonType === "primarySpaure" && {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
+    width: "100%",
   }),
   ...(buttonType === "primarySpaureLong" && {
     backgroundColor: theme.palette.primary.main,
@@ -54,6 +57,7 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     backgroundColor: theme.palette.primary.contrastText,
     color: theme.palette.primary.main,
     border: `1px solid ${theme.palette.primary.main}`,
+    width: "100%",
   }),
   ...(buttonType === "login" && {
     "backgroundImage": "linear-gradient(#5D6DBE,#607AFF)",

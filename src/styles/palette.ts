@@ -6,6 +6,10 @@ const CMColors = {
     a95: "#EFF1F9",
     a100: "#FFFFFF",
   },
+
+  nurse: {
+    test: "a",
+  },
   black: "#000000",
   text: "#5E5F65",
   disabled: "#C4C5CC",
