@@ -58,7 +58,7 @@ export default function SettingsPage() {
         </HeadContainer>
         <BodyContainer>
           <BodyTitleContainer>
-            <div style={{ width: "240px" }}></div>
+            <div style={{ width: "290px" }}></div>
             <div>
               <Title variant="h1">스태프 계정 수정</Title>
             </div>
@@ -111,6 +111,7 @@ const BodyTitleContainer = styled(Box)({
 const StaffButtonContainer = styled(Box)({
   display: "flex",
   gap: "20px",
+  width: "300px",
 });
 
 const TabButton = styled(Button, {
