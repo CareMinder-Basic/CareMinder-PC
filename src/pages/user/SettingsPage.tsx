@@ -1,5 +1,6 @@
 import CButton from "@components/common/atom/C-Button";
 import SettingsModal from "@components/settings/SettingsModal";
+import StaffAccountSettingsTable from "@components/settings/StaffAccountSettingsTable";
 import modalState from "@libraries/recoil/modal";
 import { Box, Button, Stack, styled, Typography } from "@mui/material";
 import { useState } from "react";
@@ -56,14 +57,17 @@ export default function SettingsPage() {
           <div style={{ width: "131.37px" }}></div>
         </HeadContainer>
         <BodyContainer>
-          <div style={{ width: "240px" }}></div>
-          <div>
-            <Title variant="h1">스태프 계정 수정</Title>
-          </div>
-          <StaffButtonContainer>
-            <CButton buttonType="primarySpaureWhite">스태프 계정 생성</CButton>
-            <CButton buttonType="primarySpaureWhite">스태프 추가</CButton>
-          </StaffButtonContainer>
+          <BodyTitleContainer>
+            <div style={{ width: "240px" }}></div>
+            <div>
+              <Title variant="h1">스태프 계정 수정</Title>
+            </div>
+            <StaffButtonContainer>
+              <CButton buttonType="primarySpaureWhite">스태프 계정 생성</CButton>
+              <CButton buttonType="primarySpaureWhite">스태프 추가</CButton>
+            </StaffButtonContainer>
+          </BodyTitleContainer>
+          <StaffAccountSettingsTable />
         </BodyContainer>
       </Container>
     </>
@@ -72,7 +76,7 @@ export default function SettingsPage() {
 
 const Container = styled(Stack)({
   height: "100%",
-  maxHeight: "632.82px",
+  // maxHeight: "632.82px",
   padding: "31.6px 0",
 });
 
@@ -93,12 +97,16 @@ const TabContainer = styled(Box)(({ theme }) => ({
   padding: "4px",
 }));
 
-const BodyContainer = styled(Box)(({ theme }) => ({
+const BodyContainer = styled(Box)({
+  marginBottom: "32px",
+});
+
+const BodyTitleContainer = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginTop: "32px",
-}));
+  margin: "32px 0",
+});
 
 const StaffButtonContainer = styled(Box)({
   display: "flex",
@@ -116,7 +124,6 @@ const TabButton = styled(Button, {
     backgroundColor: theme.palette.primary.contrastText,
     color: theme.palette.primary.dark,
   },
-  "transition": "background-color 0.3s, color 0.3s",
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
