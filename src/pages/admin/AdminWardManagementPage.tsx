@@ -1,3 +1,3 @@
 export default function AdminWardManagementPage() {
-  return <>AdminWardManagementPage</>;
+  return <div>AdminWardManagementPage</div>;
 }

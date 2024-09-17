@@ -1,51 +1,30 @@
 import { Stack, styled } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+import { PatientListBoxType } from "..";
+import { roleColor } from "@utils/homePage";
+import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 
-function WordPatientListBox({ isAccept }: { isAccept: boolean }) {
-  /**
-   * props
-   * 1. isAccept 수락인지 아닌지.
-   * 2. 각 데이터
-   *
-   */
-  const select = {
-    Nurse: {
-      dark: "#30B4FF",
-      light: "#D6F0FF",
-    },
-    Nurse1: {
-      dark: "#F24679",
-      light: "#FCDAE4",
-    },
-    Nurse2: {
-      dark: "#5D6DBE",
-      light: "#DCE2FF",
-    },
-    Nurse3: {
-      dark: "#5E5F65",
-      light: "#E8E8E9",
-    },
-  };
+function MainPatientListBox({ isAccept, data }: { isAccept: boolean; data: PatientListBoxType }) {
+  const roleColorPick = roleColor(data.role);
 
   return (
-    <InnerContainer color={"#D6F0FF"}>
-      <Title color={select.Nurse.dark}>경증환자실1 (T13)</Title>
+    <InnerContainer color={roleColorPick.light}>
+      <Title color={roleColorPick.dark}>{data.place}</Title>
       <Bottom>
         <TxtBox>
-          <TxtBoxLeft>
-            진통제를 추가적으로 받을 수 있나요?진통제를 추가적으로 받을 수 있나요?
-          </TxtBoxLeft>
+          <TxtBoxLeft>{data.request}</TxtBoxLeft>
           <TxtBoxRight>
-            <SmallCheck color={"#30B4FF"}>N</SmallCheck>
-            <span>33분전</span>
+            {data.isNew && <SmallCheck color={roleColorPick.dark}>N</SmallCheck>}
+            <span>{data.time}분전</span>
           </TxtBoxRight>
         </TxtBox>
-        <Check color={"#30B4FF"}>{isAccept ? "OK" : <CheckIcon />}</Check>
+        <Check color={roleColorPick.dark}>
+          {isAccept ? "OK" : <CheckIcon style={{ cursor: "pointer" }} />}
+        </Check>
       </Bottom>
     </InnerContainer>
   );
 }
-export default WordPatientListBox;
+export default MainPatientListBox;
 
 const InnerContainer = styled(Stack)<{ color: string }>`
   border-radius: 12px;
@@ -82,6 +61,8 @@ const TxtBoxRight = styled("div")`
   text-align: end;
   display: flex;
   align-items: center;
+  text-align: right;
+  justify-content: end;
 `;
 const Bottom = styled("div")`
   display: flex;
@@ -113,4 +94,5 @@ const SmallCheck = styled("div")<{ color: string }>`
   font-size: 13px;
   border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   font-weight: 900;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
 `;

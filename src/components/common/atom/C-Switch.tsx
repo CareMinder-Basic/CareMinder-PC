@@ -11,9 +11,7 @@ export default CSwitch;
 
 /** styled */
 
-const StyledSwitch = styled(props => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
+const StyledSwitch = styled(Switch)(({ theme }) => ({
   "width": "64px",
   "height": "30px",
   "padding": 0,

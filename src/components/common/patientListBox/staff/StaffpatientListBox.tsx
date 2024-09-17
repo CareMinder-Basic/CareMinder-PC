@@ -1,62 +1,98 @@
 import { Stack, styled } from "@mui/material";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import { ChatBox } from "@components/home";
+import { PatientListBoxType } from "..";
+import { roleColor } from "@utils/homePage";
+import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
+import { useState } from "react";
+import { CComboBox } from "@components/common/atom/C-ComboBox";
 
 type StaffListBoxProps = {
   isAccept: boolean;
+  data: PatientListBoxType;
 };
 
-function StaffPatientListBox({ isAccept }: StaffListBoxProps) {
-  /**
-   * props
-   * 1. isAccept 수락인지 아닌지.
-   * 2. 각 데이터
-   *
-   */
+function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
+  const roleColorPick = roleColor(data.role);
 
-  const select = {
-    Nurse: {
-      dark: "#30B4FF",
-      light: "#D6F0FF",
-    },
-    Nurse1: {
-      dark: "#F24679",
-      light: "#FCDAE4",
-    },
-    Nurse2: {
-      dark: "#5D6DBE",
-      light: "#DCE2FF",
-    },
-    Nurse3: {
-      dark: "#5E5F65",
-      light: "#E8E8E9",
-    },
+  const [isOptions, setIsOptions] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isChatting, setIsChatting] = useState(false);
+
+  const onOptionOnOff = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isOptions || isEdit) {
+      setIsEdit(false);
+      setIsOptions(false);
+    } else if (!isOptions && !isEdit) {
+      setIsOptions(true);
+    }
+  };
+  const onOpenChatting = () => {
+    if (!isAccept) return;
+    setIsChatting(prev => !prev);
   };
 
   return (
-    <InnerContainer color={"#D6F0FF"}>
-      <Title color={"#30B4FF"}>
-        <div>경증환자실1 (T13)</div>
-        <MoreHorizRoundedIcon sx={{ color: "#C4C5CC" }} />
+    <InnerContainer color={roleColorPick.light} onClick={onOpenChatting}>
+      <Title color={roleColorPick.dark} tabIndex={0} onBlur={() => setIsOptions(false)}>
+        <div>{data.place}</div>
+        <div>
+          <MoreHorizRoundedIcon
+            onClick={onOptionOnOff}
+            sx={{ color: "#C4C5CC", cursor: "pointer" }}
+          />
+          {isOptions && (
+            <Options>
+              {isAccept ? (
+                <Option onMouseDown={() => console.log("수락취소")}>수락취소</Option>
+              ) : (
+                <Option onMouseDown={() => setIsEdit(true)}>담당직종 변경</Option>
+              )}
+              <Option onMouseDown={() => console.log("퇴원")}>퇴원</Option>
+            </Options>
+          )}
+          {isEdit && (
+            <Options
+              tabIndex={0}
+              onBlur={() => {
+                setIsEdit(false);
+                setIsOptions(false);
+              }}
+            >
+              <span>담당직종 변경</span>
+              <BoxWrapper>
+                <CComboBox
+                  placeholder="간호사"
+                  options={[
+                    { label: "의사", id: 1 },
+                    { label: "조무사", id: 2 },
+                    { label: "직원", id: 3 },
+                  ]}
+                />
+              </BoxWrapper>
+            </Options>
+          )}
+        </div>
       </Title>
       <Bottom>
         <TxtBox>
           <TxtBoxLeft>
-            <SmallCheck color={"#30B4FF"}>N</SmallCheck>
-            진통제를 추가적으로 받을 수 있나요?진통제를 추가적으로 받을 수 있나요?
+            {data.isNew && <SmallCheck color={roleColorPick.dark}>N</SmallCheck>}
+            {data.request}
           </TxtBoxLeft>
-          <TxtBoxRight>33분전</TxtBoxRight>
+          <TxtBoxRight>{data.time}분전</TxtBoxRight>
         </TxtBox>
-        <Check color={"#30B4FF"}>
-          {isAccept ? <CheckRoundedIcon /> : <ArrowForwardRoundedIcon />}
+        <Check color={roleColorPick.dark}>
+          {isAccept ? <CheckIcon /> : <ArrowForwardRoundedIcon />}
         </Check>
       </Bottom>
-
-      <ChatContainer>
-        <ChatBox leftorRight="right" />
-      </ChatContainer>
+      {isAccept && isChatting && (
+        <ChatContainer>
+          <ChatBox leftorRight="right" />
+        </ChatContainer>
+      )}
     </InnerContainer>
   );
 }
@@ -80,6 +116,7 @@ const Title = styled("div")<{ color: string }>`
   display: flex;
   justify-content: space-between;
   padding-right: 5px;
+  position: relative;
 `;
 const TxtBox = styled("div")`
   border-radius: 6px;
@@ -124,7 +161,7 @@ const SmallCheck = styled("div")<{ color: string }>`
   width: 20px;
   height: 20px;
   display: flex;
-  padding-top: 1px;
+  padding-top: 2px;
   justify-content: center;
   margin-right: 6px;
   font-size: 13px;
@@ -136,4 +173,37 @@ const SmallCheck = styled("div")<{ color: string }>`
 const ChatContainer = styled("div")`
   border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   margin-top: 12px;
+`;
+const Options = styled("div")`
+  background-color: ${({ theme }) => theme.palette.primary.contrastText};
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  padding: 11px;
+  box-shadow: 0px 4px 12px 0px #89898e4d;
+  border-radius: 8px;
+  & > div:first-of-type {
+    border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
+  }
+  & > span {
+    font-size: 14px;
+    font-weight: 700;
+    color: ${({ theme }) => theme.palette.primary.dark};
+  }
+`;
+const Option = styled("div")`
+  font-size: 13px;
+  color: ${({ theme }) => theme.palette.primary.dark};
+  font-weight: 500;
+  padding: 8px 0;
+  cursor: pointer;
+  width: 69px;
+  :hover {
+    color: ${({ theme }) => theme.palette.primary.main};
+  }
+`;
+const BoxWrapper = styled("div")`
+  height: 39px;
+  width: 130px;
+  margin-top: 8px;
 `;
