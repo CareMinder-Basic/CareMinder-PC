@@ -3,6 +3,7 @@ import { SwitchCase } from "@toss/react";
 import StaffPatientListBox from "./staff/StaffpatientListBox";
 import { roleProps } from "@utils/homePage";
 import MainPatientListBox from "./main/MainpatientListBox";
+import CompletedPatientListBox from "./completedRequest/CompletedpatientListBox";
 
 export type PatientListBoxType = {
   id: number;
@@ -13,7 +14,13 @@ export type PatientListBoxType = {
   isNew?: boolean;
 };
 type UserType = {
-  user: "mainWait" | "mainAccept" | "staffWait" | "staffAccept";
+  user:
+    | "mainWait"
+    | "mainAccept"
+    | "staffWait"
+    | "staffAccept"
+    | "completedRequest"
+    | "completedRequestFocus";
   data: PatientListBoxType;
 };
 
@@ -29,6 +36,8 @@ export default function PatientBox({ user, data }: UserType) {
           mainAccept: <MainPatientListBox isAccept={true} data={data} />,
           staffWait: <StaffPatientListBox isAccept={false} data={data} />,
           staffAccept: <StaffPatientListBox isAccept={true} data={data} />,
+          completedRequest: <CompletedPatientListBox isAccept={false} data={data} />,
+          completedRequestFocus: <CompletedPatientListBox isAccept={true} data={data} />,
         }}
       />
     </>
