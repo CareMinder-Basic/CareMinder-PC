@@ -1,13 +1,10 @@
 import { Stack, styled } from "@mui/material";
-
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-
 import { PatientListBoxType } from "..";
 import { roleColor } from "@utils/homePage";
-
 import { useState } from "react";
-import { CComboBox } from "@components/common/atom/C-ComboBox";
 import { ChatBox } from "@components/home";
+import { ReactComponent as SendIcon } from "@/assets/completedRequests/send.svg";
 
 type StaffListBoxProps = {
   isAccept: boolean;
@@ -61,6 +58,11 @@ function CompletedPatientListBox({ isAccept, data }: StaffListBoxProps) {
       {isAccept && (
         <ChatContainer>
           <ChatBox leftorRight="right" />
+          <ChatBox leftorRight="left" />
+          <ChatInputWrapper>
+            <input placeholder="메세지를 입력해 주세요" />
+            <CustomSendIcon />
+          </ChatInputWrapper>
         </ChatContainer>
       )}
     </InnerContainer>
@@ -115,17 +117,7 @@ const Bottom = styled("div")`
   align-items: end;
   justify-content: space-between;
 `;
-const Check = styled("div")<{ color: string }>`
-  background-color: ${({ color }) => color};
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  font-weight: 900;
-`;
+
 const SmallCheck = styled("div")<{ color: string }>`
   background-color: ${({ color }) => color};
   border-radius: 50%;
@@ -144,6 +136,7 @@ const SmallCheck = styled("div")<{ color: string }>`
 const ChatContainer = styled("div")`
   border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   margin-top: 12px;
+  padding: 30px 0 12px 0;
 `;
 const Options = styled("div")`
   background-color: ${({ theme }) => theme.palette.primary.contrastText};
@@ -173,8 +166,22 @@ const Option = styled("div")`
     color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
-const BoxWrapper = styled("div")`
-  height: 39px;
-  width: 130px;
-  margin-top: 8px;
+const ChatInputWrapper = styled("div")`
+  position: relative;
+  padding-top: 16px;
+  border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
+  margin-top: 30px;
+  & > input {
+    width: 100%;
+    border-radius: 100px;
+    padding: 8px 45px 8px 16px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+`;
+const CustomSendIcon = styled(SendIcon)`
+  position: absolute;
+  top: 21px;
+  right: 12px;
 `;
