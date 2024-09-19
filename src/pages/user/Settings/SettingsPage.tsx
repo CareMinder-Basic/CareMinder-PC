@@ -77,7 +77,6 @@ export default function SettingsPage() {
 
 const Container = styled(Stack)({
   height: "100%",
-  // maxHeight: "632.82px",
   padding: "31.6px 0",
 });
 

@@ -27,11 +27,11 @@ const BodyTitleContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  margin: "32px 0",
+  margin: "60px 0 40px 0",
 });
 
 const PaginationContainer = styled(Box)({
-  marginTop: "32px",
+  marginTop: "60px",
 });
 
 const Title = styled(Typography)(({ theme }) => ({
