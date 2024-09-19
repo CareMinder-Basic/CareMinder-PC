@@ -3,12 +3,16 @@ import CButton from "@components/common/atom/C-Button";
 import PaginationComponent from "@components/common/pagination";
 import StaffAccountSettingsTable from "@components/settings/StaffAccountSettingsTable";
 import { Typography } from "@mui/material";
+import { useBooleanState } from "@toss/react";
+import NewStaffModal from "@components/settings/NewStaffModal";
 
 // 스태프 계정 설정
 
 export const StaffAccount = () => {
+  const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
   return (
     <>
+      <NewStaffModal open={open} onClose={closeCreateModal}></NewStaffModal>
       <BodyTitleContainer>
         <div style={{ width: "290px" }}></div>
         <div>
@@ -16,7 +20,9 @@ export const StaffAccount = () => {
         </div>
         <StaffButtonContainer>
           <CButton buttonType="primarySpaureWhite">스태프 계정 생성</CButton>
-          <CButton buttonType="primarySpaureWhite">스태프 추가</CButton>
+          <CButton buttonType="primarySpaureWhite" onClick={openCreateModal}>
+            스태프 추가
+          </CButton>
         </StaffButtonContainer>
       </BodyTitleContainer>
       <StaffAccountSettingsTable />
