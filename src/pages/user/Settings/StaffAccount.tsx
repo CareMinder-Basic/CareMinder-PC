@@ -14,7 +14,7 @@ export const StaffAccount = () => {
     <>
       <NewStaffModal open={open} onClose={closeCreateModal}></NewStaffModal>
       <BodyTitleContainer>
-        <div style={{ width: "290px" }}></div>
+        <div style={{ width: "300px" }}></div>
         <div>
           <Title variant="h1">스태프 계정 수정</Title>
         </div>

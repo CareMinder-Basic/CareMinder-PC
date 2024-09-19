@@ -4,6 +4,9 @@ import palette from "@styles/palette";
 import { CComboBox } from "@components/common/atom/C-ComboBox";
 import CInput from "@components/common/atom/C-Input";
 
+import { ReactComponent as Leave } from "@/assets/Leave.svg";
+import { ReactComponent as Sleep } from "@/assets/sleep.svg";
+
 const columns = [
   { field: "Section", headerName: "구역" },
   { field: "TabletName", headerName: "태블릿 이름" },
@@ -49,6 +52,10 @@ const TabletManagementTable: FC = () => {
                     disabled={false}
                     id={""}
                   ></CInput>
+                  <TabletButtonLayout>
+                    <Leave />
+                    <Sleep />
+                  </TabletButtonLayout>
                 </ComBoxLayout>
               </td>
               <td>
@@ -97,7 +104,17 @@ const StTable = styled.table`
 `;
 
 const ComBoxLayout = styled.div`
+  position: relative;
   width: 224px;
   height: 36px;
   margin: 0 auto;
+`;
+
+const TabletButtonLayout = styled.div`
+  position: absolute;
+  top: 4px;
+  right: -70px;
+
+  display: flex;
+  gap: 5px;
 `;

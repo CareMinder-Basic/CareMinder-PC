@@ -66,7 +66,6 @@ const StaffAccountSettingsTable: FC = () => {
                       { label: "구역2", id: 112 },
                       { label: "구역3", id: 113 },
                       { label: "구역4", id: 114 },
-                      { id: -1, label: "구역 추가" },
                     ]}
                   />
                 </LongComBoxLayout>
