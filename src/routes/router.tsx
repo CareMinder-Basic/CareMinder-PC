@@ -18,6 +18,7 @@ import {
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
 import AdminNoticePage from "@pages/admin/AdminNoticePage";
+import AdminNoticeWritePage from "@pages/admin/AdminNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -37,6 +38,7 @@ const routes: RouteObject[] = [
           { path: RoutePath.Settings, element: <SettingsPage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
           { path: RoutePath.AdminNotice, element: <AdminNoticePage /> },
+          { path: RoutePath.AdminNoticeWrite, element: <AdminNoticeWritePage /> },
         ],
       },
       {

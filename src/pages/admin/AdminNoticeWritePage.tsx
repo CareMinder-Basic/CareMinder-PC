@@ -1,45 +1,30 @@
-import { Box, Stack, SvgIcon, Typography, styled } from "@mui/material";
-import { AdminNoticeCard, AdminTable } from "@components/admin";
+import { Box, Stack, Typography, styled } from "@mui/material";
+import { AdminTable } from "@components/admin";
 
 import CButton from "@components/common/atom/C-Button";
 
 import PaginationComponent from "@components/common/pagination";
-import AdminNoticeCardDeatil from "@components/admin/adminNotice/adminNoticeCardDetail";
+import AdminNoticeWriteForm from "@components/admin/adminNotice/adminNoticeWriteForm";
 
-const mock = [1, 2, 3, 4, 5, 6, 7];
-
-const AdminNoticePage = () => {
+const AdminNoticeWritePage = () => {
   return (
     <Container>
       <div>
         <Title variant="h1">공지</Title>
         <AdminInoutSubTitleContainer>
-          <AdminInoutSubTitleLeftContainer>서치바</AdminInoutSubTitleLeftContainer>
+          <AdminInoutSubTitleLeftContainer></AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
-            <ButtonListLayout>
-              <ButtonLayout width={"124px"}>
-                <CButton buttonType={"primaryBlack"}>내 환자 대상 공지</CButton>
-              </ButtonLayout>
-              <ButtonLayout width={"121px"}>
-                <CButton buttonType={"primaryBlack"}>내가 작성한 공지</CButton>
-              </ButtonLayout>
-              <ButtonLayout width={"150px"}>
-                <CButton buttonType={"primaryBlack"}>내 근무 시간동안 공지</CButton>
-              </ButtonLayout>
-            </ButtonListLayout>
             <ButtonLayout width={"148px"}>
-              <CButton buttonType={"primarySpaureWhite"}>공지 작성</CButton>
+              <CButton buttonType={"primarySpaure"}>공지 작성</CButton>
             </ButtonLayout>
           </AdminInoutSubTitleRightContainer>
         </AdminInoutSubTitleContainer>
       </div>
       <TableLayout>
         <AdminNoticeListLayout>
-          {mock.map(item => {
-            return <AdminNoticeCard key={item} />;
-          })}
+          <AdminTable />
         </AdminNoticeListLayout>
-        <AdminNoticeCardDeatil />
+        <AdminNoticeWriteForm />
       </TableLayout>
       <FooterLayout>
         <PaginationComponent totalPage={5} />
@@ -48,7 +33,7 @@ const AdminNoticePage = () => {
   );
 };
 
-export default AdminNoticePage;
+export default AdminNoticeWritePage;
 
 /** styles */
 
@@ -78,7 +63,7 @@ const AdminInoutSubTitleRightContainer = styled(Box)({
   alignItems: "center",
   gap: "15.66px",
 
-  justifyContent: "space-between",
+  justifyContent: "end",
 });
 const ButtonLayout = styled(Box)(width => ({
   width: `${width}`,
