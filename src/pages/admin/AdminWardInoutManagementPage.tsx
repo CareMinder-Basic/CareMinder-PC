@@ -44,7 +44,6 @@ export default AdminWardInoutManagementPage;
 
 const Container = styled(Stack)({
   height: "100%",
-  maxHeight: "957px",
 });
 
 const AdminInoutSubTitleContainer = styled(Box)({
