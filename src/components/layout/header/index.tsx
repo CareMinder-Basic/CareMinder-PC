@@ -36,6 +36,7 @@ const Layout = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "14px 28px",
+  zIndex: "1",
 
   backgroundColor: theme.palette.primary.main,
 }));
