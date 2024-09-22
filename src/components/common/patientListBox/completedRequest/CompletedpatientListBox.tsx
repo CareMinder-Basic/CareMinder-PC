@@ -5,6 +5,7 @@ import { roleColor } from "@utils/homePage";
 import { useState } from "react";
 import { ChatBox } from "@components/home";
 import { ReactComponent as SendIcon } from "@/assets/completedRequests/send.svg";
+import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 
 type StaffListBoxProps = {
   isAccept: boolean;
@@ -36,7 +37,6 @@ function CompletedPatientListBox({ isAccept, data }: StaffListBoxProps) {
             onClick={onOptionOnOff}
             sx={{ color: "#C4C5CC", cursor: "pointer" }}
           />
-
           {isOptions && (
             <Options>
               <Option>복원하기</Option>
@@ -54,6 +54,11 @@ function CompletedPatientListBox({ isAccept, data }: StaffListBoxProps) {
           </TxtBoxLeft>
           <TxtBoxRight>{data.time}분전</TxtBoxRight>
         </TxtBox>
+        {isAccept && (
+          <Check color={roleColorPick.dark}>
+            <CheckIcon />
+          </Check>
+        )}
       </Bottom>
       {isAccept && (
         <ChatContainer>
@@ -184,4 +189,15 @@ const CustomSendIcon = styled(SendIcon)`
   position: absolute;
   top: 21px;
   right: 12px;
+`;
+const Check = styled("div")<{ color: string }>`
+  background-color: ${({ color }) => color};
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  font-weight: 900;
 `;
