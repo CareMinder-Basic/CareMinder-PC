@@ -9,7 +9,7 @@ import { waitPatientmockData } from "@components/home/wordMainMockData";
 export default function CompletedRequestsPage() {
   const [isPatient, setIsPatient] = useState<boolean>(false);
   const [isFocusPatientData, setIsFocusPatientData] = useState<null | PatientListBoxType>();
-  console.log(isFocusPatientData);
+
   return (
     <Wrapper>
       <Title>완료 요청 히스토리</Title>
@@ -19,6 +19,7 @@ export default function CompletedRequestsPage() {
       </SubTitle>
       <Container>
         <LeftWrapper>
+          {/* isPatient 환자별로 보기 ON 상황 */}
           {isPatient ? (
             <Person>
               <PersonIcon /> <div>홍길동</div>
