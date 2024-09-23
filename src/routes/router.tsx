@@ -34,7 +34,6 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
-          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
         ],
       },
       {
@@ -42,6 +41,7 @@ const routes: RouteObject[] = [
         element: <AuthorizedRoute allowedRoles={["admin"]} />,
         children: [
           { index: true, element: <AdminWardManagementPage /> },
+          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
           { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
         ],
       },
