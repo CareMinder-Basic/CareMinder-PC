@@ -55,7 +55,6 @@ const StyledSelect = styled(Select)(({ theme }) => ({
   },
 }));
 
-
 const StyledPlaceholder = styled(MenuItem)(({ theme }) => ({
   color: theme.palette.primary.dark,
   fontWeight: "400px",
@@ -64,8 +63,8 @@ const StyledPlaceholder = styled(MenuItem)(({ theme }) => ({
   padding: "16px 8px",
 }));
 
-EX)
-<div style={{ width: "224px", height: "36px" }}> // 상위 요소에서 width와 hegith 를 정해주세요
-        <CComboBox placeholder="구도" options={options} />
-</div>
-\*/
+// EX)
+// <div style={{ width: "224px", height: "36px" }}> // 상위 요소에서 width와 hegith 를 정해주세요
+//         <CComboBox placeholder="구도" options={options} />
+// </div>
+// \*/

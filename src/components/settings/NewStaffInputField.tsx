@@ -25,15 +25,14 @@ export default function NewStaffInputField({ field, form }: InputFieldProps) {
         render={({ field }) => (
           <>
             {field.name === "occupation" ? (
-              <CComboBox
-                placeholder={"간호사"}
-                options={[
-                  { label: "간호사", id: 1 },
-                  { label: "조무사", id: 2 },
-                  { label: "의사", id: 3 },
-                  { label: "직원", id: 4 },
-                ]}
-              />
+              <div style={{ height: "56px" }}>
+                <CComboBox
+                  placeholder={"간호사"}
+                  options={["간호사", "의사", "조무사", "직원"]}
+                  value={""}
+                  onChange={() => null}
+                />
+              </div>
             ) : (
               <TextField
                 {...field}

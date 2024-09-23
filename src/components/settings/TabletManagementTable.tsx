@@ -39,7 +39,7 @@ const TabletManagementTable: FC = () => {
             <tr>
               <td>
                 <ComBoxLayout>
-                  <CComboBox placeholder={"구역"} options={[]} />
+                  <CComboBox placeholder={"구역"} options={[]} value={""} onChange={() => null} />
                 </ComBoxLayout>
               </td>
               <td>
