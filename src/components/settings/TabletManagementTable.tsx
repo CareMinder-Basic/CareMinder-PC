@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "@emotion/styled";
 import palette from "@styles/palette";
 import { CComboBox } from "@components/common/atom/C-ComboBox";
@@ -26,6 +26,7 @@ const rows = [
 ];
 
 const TabletManagementTable: FC = () => {
+  const [options, setOptions] = useState<string[]>(["구역1", "구역2", "구역3", "구역4"]);
   return (
     <StTable>
       <thead>
@@ -39,7 +40,16 @@ const TabletManagementTable: FC = () => {
             <tr>
               <td>
                 <ComBoxLayout>
-                  <CComboBox placeholder={"구역"} options={[]} value={""} onChange={() => null} />
+                  <CComboBox
+                    placeholder={"구역"}
+                    options={options}
+                    value={""}
+                    onChange={() => null}
+                    allowCustomInput={true}
+                    onCustomInputAdd={newValue => {
+                      setOptions([...options, newValue]);
+                    }}
+                  />
                 </ComBoxLayout>
               </td>
               <td>

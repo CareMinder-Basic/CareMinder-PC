@@ -1,12 +1,15 @@
-import { FormControl, MenuItem, Select, styled } from "@mui/material";
+import { FormControl, MenuItem, Select, styled, TextField } from "@mui/material";
 import { ExpandMore as ArrowDropDownIcon, BorderRight } from "@mui/icons-material";
-import { FC } from "react";
+import { FC, useState } from "react";
+import CButton from "./C-Button";
 
 export type CComboBoxProps<T> = {
   placeholder: string;
   options: Array<string>;
   value: string;
   onChange: (event: any) => void;
+  allowCustomInput?: boolean;
+  onCustomInputAdd?: (value: string) => void;
 };
 
 export const CComboBox: FC<CComboBoxProps<{ label: string; id: number }>> = ({
@@ -14,7 +17,28 @@ export const CComboBox: FC<CComboBoxProps<{ label: string; id: number }>> = ({
   options,
   value,
   onChange,
+  allowCustomInput = false,
+  onCustomInputAdd,
 }) => {
+  const [isCreate, setIsCreate] = useState(false);
+  const [customInput, setCustomInput] = useState("");
+
+  const handleCustomInputAdd = () => {
+    setCustomInput("");
+    setIsCreate(false);
+    if (onCustomInputAdd) {
+      if (customInput === "") {
+        setIsCreate(prev => !prev);
+      } else {
+        onCustomInputAdd(customInput);
+      }
+    }
+  };
+
+  const handleCustomItemClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
+
   return (
     <StyledFormControl fullWidth>
       <StyledSelect
@@ -29,6 +53,33 @@ export const CComboBox: FC<CComboBoxProps<{ label: string; id: number }>> = ({
             {option}
           </MenuItem>
         ))}
+        {allowCustomInput && (
+          <MenuItem
+            onClick={handleCustomItemClick}
+            disableRipple
+            style={{ display: "flex", flexDirection: "column", gap: "6px" }}
+          >
+            {isCreate ? (
+              <TextField
+                value={customInput}
+                onChange={e => setCustomInput(e.target.value)}
+                onClick={e => e.stopPropagation()}
+                placeholder="새로운 항목 입력"
+                size="small"
+                fullWidth
+              />
+            ) : null}
+            <CButton
+              buttonType={customInput ? "primarySpaure" : "primarySpaureWhite"}
+              onClick={e => {
+                e.stopPropagation();
+                handleCustomInputAdd();
+              }}
+            >
+              구역 추가
+            </CButton>
+          </MenuItem>
+        )}
       </StyledSelect>
     </StyledFormControl>
   );
