@@ -1,5 +1,6 @@
 import { Box, Stack, SvgIcon, Typography, styled } from "@mui/material";
 import { AdminNoticeCard, AdminTable } from "@components/admin";
+import CSearchBox from "@components/common/atom/C-SearchBox";
 
 import CButton from "@components/common/atom/C-Button";
 
@@ -14,7 +15,14 @@ const AdminNoticePage = () => {
       <div>
         <Title variant="h1">공지</Title>
         <AdminInoutSubTitleContainer>
-          <AdminInoutSubTitleLeftContainer>서치바</AdminInoutSubTitleLeftContainer>
+          <AdminInoutSubTitleLeftContainer>
+            <CSearchBox
+              value={""}
+              onChange={() => null}
+              placeholder={"검색 내용을 입력해주세요."}
+              borderColor="#8C8E94"
+            />
+          </AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
             <ButtonListLayout>
               <ButtonLayout width={"124px"}>
@@ -57,9 +65,11 @@ const Container = styled(Stack)({
 });
 
 const AdminInoutSubTitleContainer = styled(Box)({
+  width: "100%",
   marginTop: "17.66px",
   display: "flex",
   justifyContent: "space-between",
+  gap: "22px",
 });
 
 const AdminNoticeListLayout = styled(Box)({
@@ -69,7 +79,7 @@ const AdminNoticeListLayout = styled(Box)({
 const AdminInoutSubTitleLeftContainer = styled(Box)({
   display: "flex",
   width: "50%",
-  gap: "20px",
+  // gap: "20px",
   alignItems: "center",
 });
 const AdminInoutSubTitleRightContainer = styled(Box)({
@@ -82,6 +92,7 @@ const AdminInoutSubTitleRightContainer = styled(Box)({
 });
 const ButtonLayout = styled(Box)(width => ({
   width: `${width}`,
+  maxHeight: "34px",
 }));
 const ButtonListLayout = styled(Box)({
   display: "flex",

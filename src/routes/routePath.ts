@@ -8,9 +8,9 @@ const RoutePath = {
   Notice: "/notice",
   Settings: "/settings",
   AdminWardManagement: "/admin",
-  AdminWardInOut: "/admin/inout",
-  AdminNotice: "/admin/notice",
-  AdminNoticeWrite: "/admin/notice/write",
+  AdminWardInOut: "/admin/staff/inout",
+  AdminNotice: "/admin/staff/notice",
+  AdminNoticeWrite: "/admin/staff/notice/write",
 
   AdminStaffManagement: "/admin/staff",
 

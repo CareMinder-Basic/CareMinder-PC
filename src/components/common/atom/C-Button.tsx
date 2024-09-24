@@ -65,6 +65,7 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     color: "black",
     border: `1px solid #8C8E94`,
     width: "100%",
+    height: "100%",
     borderRadius: "100px",
     fontSize: "14px",
   }),
