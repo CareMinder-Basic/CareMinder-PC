@@ -7,8 +7,17 @@ type ChatBoxProps = {
 function ChatBox({ leftorRight }: ChatBoxProps) {
   return (
     <Wrapper leftorRight={leftorRight}>
-      <Time>오전 06:30</Time>
-      <Title color={"#C1E9FF"}>배가 아파요.</Title>
+      {leftorRight === "left" ? (
+        <>
+          <Title color={"white"}>배가 아파요.</Title>
+          <Time>오전 06:30</Time>
+        </>
+      ) : (
+        <>
+          <Time>오전 06:30</Time>
+          <Title color={"#C1E9FF"}>배가 아파요.</Title>
+        </>
+      )}
     </Wrapper>
   );
 }
@@ -29,6 +38,6 @@ const Time = styled("div")`
 const Title = styled("div")<{ color: string }>`
   width: fit-content;
   background-color: ${({ color }) => color};
-  padding: 8px 14px;
+  padding: 8px 15px;
   border-radius: 8px;
 `;

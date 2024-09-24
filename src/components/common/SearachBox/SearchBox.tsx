@@ -18,7 +18,6 @@ export default function SearchBox() {
   const [selectedNurse, setSelectedNurse] = useState<string>("");
 
   const inputRef = useRef<HTMLInputElement>(null);
-  console.log(inputRef);
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsOpen(true);
