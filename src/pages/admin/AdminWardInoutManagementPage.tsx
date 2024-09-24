@@ -2,7 +2,9 @@ import { Box, Stack, SvgIcon, Typography, styled } from "@mui/material";
 import { AdminTable } from "@components/admin";
 import CSwitch from "@components/common/atom/C-Switch";
 import CButton from "@components/common/atom/C-Button";
+import CSearchBox from "@components/common/atom/C-SearchBox";
 import { ReactComponent as ArrayIcon } from "@assets/array.svg";
+import PaginationComponent from "@components/common/pagination";
 
 const AdminWardInoutManagementPage = () => {
   return (
@@ -21,9 +23,15 @@ const AdminWardInoutManagementPage = () => {
             </SectionArrayLayout>
           </AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
-            <div></div>
+            <div>
+              <CSearchBox
+                value={""}
+                onChange={() => null}
+                plaeholder={"환자 이름을 검색해 주세요."}
+              />
+            </div>
             <ButtonLayout>
-              <CButton buttonType={"primarySpaureWhite"}>퇴원 처리</CButton>
+              <CButton buttonType={"primarySpaure"}>퇴원 처리</CButton>
             </ButtonLayout>
           </AdminInoutSubTitleRightContainer>
         </AdminInoutSubTitleContainer>
@@ -32,7 +40,9 @@ const AdminWardInoutManagementPage = () => {
         <AdminTable />
       </TableLayout>
       <FooterLayout>
-        <div>페이지 네이션</div>
+        <div>
+          <PaginationComponent totalPage={5} />
+        </div>
       </FooterLayout>
     </Container>
   );
