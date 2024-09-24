@@ -36,7 +36,12 @@ const AdminTable: FC = () => {
             <tr>
               <td>
                 <ComBoxLayout>
-                  <CComboBox placeholder={"구역"} options={[]} />
+                  <CComboBox
+                    placeholder={"구역"}
+                    options={["테스트1", "테스트2"]}
+                    value={""}
+                    onChange={() => null}
+                  />
                 </ComBoxLayout>
               </td>
               <td>
