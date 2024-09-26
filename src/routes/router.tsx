@@ -42,7 +42,7 @@ const routes: RouteObject[] = [
         children: [
           { index: true, element: <AdminWardManagementPage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-          { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
+          // { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
         ],
       },
     ],

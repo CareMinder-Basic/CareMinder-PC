@@ -7,10 +7,12 @@ const RoutePath = {
   Diet: "/diet",
   Notice: "/notice",
   Settings: "/settings",
-  AdminWardManagement: "/admin",
-  AdminWardInOut: "/admin/inout",
+  AdminWardManagement: "/staff",
+  AdminWardInOut: "/staff/inout",
+  AdminNotice: "/staff/notice",
+  AdminNoticeWrite: "/staff/notice/write",
 
-  AdminStaffManagement: "/admin/staff",
+  // AdminStaffManagement: "/admin/staff",
 
   Signin: "/sign-in",
   AdminSignin: "/sign-in/admin",
