@@ -2,6 +2,9 @@ import { FunctionComponent } from "react";
 
 import { Link, Stack, styled, SvgIcon, SxProps, Theme, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import { UserType } from "@models/user";
+import { useRecoilValue } from "recoil";
+import { userState } from "@libraries/recoil";
 
 type PageButtonProps = {
   routePath: string;
@@ -12,10 +15,24 @@ type PageButtonProps = {
 export default function MenuLayout({ pageName, routePath, icon }: PageButtonProps) {
   const { pathname } = useLocation();
   const isActive = pathname === routePath;
+  const user = useRecoilValue(userState);
+  let menuButtonStyle = useMenuButtonStyles(isActive);
+
+  switch (user?.type) {
+    case "main":
+      menuButtonStyle = useMenuButtonStyles(isActive);
+      break;
+    case "staff":
+      menuButtonStyle = useStaffMenuButtonStyles(isActive);
+      break;
+    case "admin":
+      menuButtonStyle = useStaffMenuButtonStyles(isActive);
+      break;
+  }
 
   return (
     <Container>
-      <Link href={routePath} sx={useMenuButtonStyles(isActive)}>
+      <Link href={routePath} sx={menuButtonStyle}>
         <SvgIcon component={icon} inheritViewBox />
       </Link>
       <Typography variant="h5" sx={getTypographyStyles(isActive)}>
@@ -43,6 +60,18 @@ const useMenuButtonStyles = (isActive: boolean): SxProps<Theme> => ({
 
   backgroundColor: theme => theme.palette.primary[isActive ? "light" : "main"],
   color: theme => theme.palette.primary[isActive ? "contrastText" : "light"],
+});
+const useStaffMenuButtonStyles = (isActive: boolean): SxProps<Theme> => ({
+  borderRadius: "12px",
+  width: "36px",
+  height: "36px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+
+  backgroundColor: theme => theme.palette.secondary[isActive ? "light" : "main"],
+
+  color: theme => theme.palette.secondary[isActive ? "contrastText" : "light"],
 });
 
 /** styles */

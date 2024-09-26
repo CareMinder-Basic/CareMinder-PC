@@ -1,5 +1,6 @@
 import AdminSidebar from "./AdminSidebar";
 import UserSidebar from "./UserSidebar";
+import StaffSidebar from "./StaffSidebar";
 
 import { userState } from "@libraries/recoil";
 import { UserType } from "@models/user";
@@ -7,16 +8,20 @@ import { Stack, styled } from "@mui/material";
 import { SwitchCase } from "@toss/react";
 import { useRecoilValue } from "recoil";
 
+export type LayoutType = {
+  adminType: UserType;
+};
+
 export default function Sidebar() {
   const user = useRecoilValue(userState);
 
   return (
-    <Layout>
+    <Layout adminType={user?.type as UserType}>
       <SwitchCase
         value={user?.type as UserType}
         caseBy={{
           main: <UserSidebar />,
-          staff: <UserSidebar />,
+          staff: <StaffSidebar />,
           admin: <AdminSidebar />,
         }}
       />
@@ -26,7 +31,7 @@ export default function Sidebar() {
 
 /** styles */
 
-const Layout = styled(Stack)(({ theme }) => ({
+const Layout = styled(Stack)<LayoutType>(({ adminType, theme }) => ({
   position: "fixed",
   left: 0,
   top: "64px",
@@ -39,6 +44,12 @@ const Layout = styled(Stack)(({ theme }) => ({
   alignItems: "center",
   gap: "14px",
   padding: "16px 0",
-
   backgroundColor: theme.palette.primary.main,
+
+  ...(adminType === "staff" && {
+    backgroundColor: theme.palette.secondary.main,
+  }),
+  ...(adminType === "admin" && {
+    backgroundColor: theme.palette.primary.main,
+  }),
 }));
