@@ -1,10 +1,10 @@
-import CButton from "@components/common/atom/C-Button";
 import SettingsModal from "@components/settings/SettingsModal";
-import StaffAccountSettingsTable from "@components/settings/StaffAccountSettingsTable";
 import modalState from "@libraries/recoil/modal";
 import { Box, Button, Stack, styled, Typography } from "@mui/material";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
+import { StaffAccount } from "./StaffAccount";
+import { TabletManagement } from "./TabletManagement";
 
 export type TabButtonProps = {
   isActive?: boolean;
@@ -21,6 +21,19 @@ export default function SettingsPage() {
 
   const handleTabClick = (value: string) => {
     setActiveTab(value);
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "태블릿 컨텐츠 수정":
+        return <div>태블릿 컨텐츠 수정</div>;
+      case "스태프 계정 수정":
+        return <StaffAccount />;
+      case "태블릿 병상 관리":
+        return <TabletManagement />;
+      default:
+        break;
+    }
   };
 
   return (
@@ -56,19 +69,7 @@ export default function SettingsPage() {
           </TabContainer>
           <div style={{ width: "131.37px" }}></div>
         </HeadContainer>
-        <BodyContainer>
-          <BodyTitleContainer>
-            <div style={{ width: "290px" }}></div>
-            <div>
-              <Title variant="h1">스태프 계정 수정</Title>
-            </div>
-            <StaffButtonContainer>
-              <CButton buttonType="primarySpaureWhite">스태프 계정 생성</CButton>
-              <CButton buttonType="primarySpaureWhite">스태프 추가</CButton>
-            </StaffButtonContainer>
-          </BodyTitleContainer>
-          <StaffAccountSettingsTable />
-        </BodyContainer>
+        <BodyContainer>{renderContent()}</BodyContainer>
       </Container>
     </>
   );
@@ -76,7 +77,6 @@ export default function SettingsPage() {
 
 const Container = styled(Stack)({
   height: "100%",
-  // maxHeight: "632.82px",
   padding: "31.6px 0",
 });
 
@@ -99,19 +99,6 @@ const TabContainer = styled(Box)(({ theme }) => ({
 
 const BodyContainer = styled(Box)({
   marginBottom: "32px",
-});
-
-const BodyTitleContainer = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  margin: "32px 0",
-});
-
-const StaffButtonContainer = styled(Box)({
-  display: "flex",
-  gap: "20px",
-  width: "300px",
 });
 
 const TabButton = styled(Button, {

@@ -3,16 +3,14 @@ import styled from "@emotion/styled";
 import palette from "@styles/palette";
 import { CComboBox } from "@components/common/atom/C-ComboBox";
 import CInput from "@components/common/atom/C-Input";
-import { ReactComponent as DeleteButton } from "@/assets/x-circle-fill.svg";
+
+import { ReactComponent as Leave } from "@/assets/Leave.svg";
+import { ReactComponent as Sleep } from "@/assets/sleep.svg";
 
 const columns = [
-  { field: "StaffName", headerName: "스태프 이름" },
-  { field: "Occupation", headerName: "직업" },
   { field: "Section", headerName: "구역" },
-  { field: "Password", headerName: "비밀번호" },
-  { field: "Phone", headerName: "전화번호" },
-  { field: "Email", headerName: "이메일" },
-  { field: "Delete", headerName: "" },
+  { field: "TabletName", headerName: "태블릿 이름" },
+  { field: "PatientName", headerName: "환자 이름" },
 ];
 
 const rows = [
@@ -27,7 +25,7 @@ const rows = [
   { id: 9, Section: "Snow", TableName: "Jon", PatientName: 35 },
 ];
 
-const StaffAccountSettingsTable: FC = () => {
+const TabletManagementTable: FC = () => {
   const [options, setOptions] = useState<string[]>(["구역1", "구역2", "구역3", "구역4"]);
   return (
     <StTable>
@@ -41,22 +39,7 @@ const StaffAccountSettingsTable: FC = () => {
           return (
             <tr>
               <td>
-                <ShortComBoxLayout>
-                  <CComboBox placeholder={"스태프"} options={[]} value={""} onChange={() => null} />
-                </ShortComBoxLayout>
-              </td>
-              <td>
-                <ShortComBoxLayout>
-                  <CComboBox
-                    placeholder={"간호사"}
-                    options={["간호사", "의사", "조무사", "직원"]}
-                    value={""}
-                    onChange={() => null}
-                  />
-                </ShortComBoxLayout>
-              </td>
-              <td>
-                <LongComBoxLayout>
+                <ComBoxLayout>
                   <CComboBox
                     placeholder={"구역"}
                     options={options}
@@ -67,48 +50,35 @@ const StaffAccountSettingsTable: FC = () => {
                       setOptions([...options, newValue]);
                     }}
                   />
-                </LongComBoxLayout>
+                </ComBoxLayout>
               </td>
               <td>
-                <LongComBoxLayout>
+                <ComBoxLayout>
                   <CInput
                     variant={"outlined"}
-                    placeholder={"비밀번호"}
+                    placeholder={"태블릿이름"}
                     onChange={() => null}
                     value={""}
                     disabled={false}
                     id={""}
                   ></CInput>
-                </LongComBoxLayout>
+                  <TabletButtonLayout>
+                    <Leave />
+                    <Sleep />
+                  </TabletButtonLayout>
+                </ComBoxLayout>
               </td>
               <td>
-                <LongComBoxLayout>
+                <ComBoxLayout>
                   <CInput
                     variant={"outlined"}
-                    placeholder={"전화번호"}
+                    placeholder={"환자 이름"}
                     onChange={() => null}
                     value={""}
                     disabled={false}
                     id={""}
                   ></CInput>
-                </LongComBoxLayout>
-              </td>
-              <td>
-                <LongComBoxLayout>
-                  <CInput
-                    variant={"outlined"}
-                    placeholder={"이메일"}
-                    onChange={() => null}
-                    value={""}
-                    disabled={false}
-                    id={""}
-                  ></CInput>
-                </LongComBoxLayout>
-              </td>
-              <td>
-                <DeleteLayout>
-                  <DeleteButton />
-                </DeleteLayout>
+                </ComBoxLayout>
               </td>
             </tr>
           );
@@ -118,7 +88,7 @@ const StaffAccountSettingsTable: FC = () => {
   );
 };
 
-export default StaffAccountSettingsTable;
+export default TabletManagementTable;
 
 const StTable = styled.table`
   width: 100%;
@@ -143,20 +113,18 @@ const StTable = styled.table`
   }
 `;
 
-const ShortComBoxLayout = styled.div`
-  width: 138px;
-  height: 36px;
-  margin: 0 auto;
-`;
-
-const LongComBoxLayout = styled.div`
+const ComBoxLayout = styled.div`
+  position: relative;
   width: 224px;
   height: 36px;
   margin: 0 auto;
 `;
 
-const DeleteLayout = styled.div`
-  width: 80px;
-  height: 36px;
-  margin: 0 auto;
+const TabletButtonLayout = styled.div`
+  position: absolute;
+  top: 4px;
+  right: -70px;
+
+  display: flex;
+  gap: 5px;
 `;
