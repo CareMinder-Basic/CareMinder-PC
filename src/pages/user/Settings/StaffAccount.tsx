@@ -5,8 +5,8 @@ import StaffAccountSettingsTable from "@components/settings/StaffAccountSettings
 import { Stack, Typography } from "@mui/material";
 import { useBooleanState } from "@toss/react";
 import NewStaffModal from "@components/settings/modal/NewStaffModal";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
 import InfoModal from "@components/settings/modal/InfoModal";
@@ -37,7 +37,18 @@ export const StaffAccount = () => {
     mode: "onChange",
   });
 
-  // const { handleSubmit } = form;
+  const { handleSubmit, watch } = form;
+
+  useEffect(() => {
+    const subscription = watch(value => {
+      console.log("Current form values:", value);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  const onSubmit: SubmitHandler<NewStaff> = data => {
+    console.log("Form submitted with data:", data);
+  };
 
   const createNewStaff = () => {
     setIsCreate(true);
@@ -66,7 +77,11 @@ export const StaffAccount = () => {
                 ))}
               </Stack>
               <ConfirmLayout>
-                <CButton buttonType="primary" style={{ width: "134px", height: "45px" }}>
+                <CButton
+                  buttonType="primary"
+                  onClick={handleSubmit(onSubmit)}
+                  style={{ width: "134px", height: "45px" }}
+                >
                   다음
                 </CButton>
               </ConfirmLayout>
