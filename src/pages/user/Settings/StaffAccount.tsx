@@ -4,11 +4,12 @@ import PaginationComponent from "@components/common/pagination";
 import StaffAccountSettingsTable from "@components/settings/StaffAccountSettingsTable";
 import { Stack, Typography } from "@mui/material";
 import { useBooleanState } from "@toss/react";
-import NewStaffModal from "@components/settings/NewStaffModal";
+import NewStaffModal from "@components/settings/modal/NewStaffModal";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
+import InfoModal from "@components/settings/modal/InfoModal";
 
 // 스태프 계정 설정
 
@@ -28,12 +29,14 @@ const quickRegisters: QuickRegisterNewStaff[] = [
 
 export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
+  const [openDelete, openDeleteModal, closeDeleteModal] = useBooleanState(false);
   const [isCreate, setIsCreate] = useState<boolean>(false);
 
   const form = useForm<NewStaff>({
     defaultValues,
     mode: "onChange",
   });
+
   // const { handleSubmit } = form;
 
   const createNewStaff = () => {
@@ -74,6 +77,11 @@ export const StaffAccount = () => {
         <>
           {" "}
           <NewStaffModal open={open} onClose={closeCreateModal}></NewStaffModal>
+          <InfoModal
+            open={openDelete}
+            onClose={closeDeleteModal}
+            modalType={"checkDeleteStaff"}
+          ></InfoModal>
           <BodyTitleContainer>
             <div>
               <Title variant="h1">스태프 계정 수정</Title>
@@ -87,7 +95,7 @@ export const StaffAccount = () => {
               </CButton>
             </StaffButtonContainer>
           </BodyTitleContainer>
-          <StaffAccountSettingsTable />
+          <StaffAccountSettingsTable onDelete={openDeleteModal} />
           <PaginationContainer>
             <div>
               <PaginationComponent totalPage={5} />

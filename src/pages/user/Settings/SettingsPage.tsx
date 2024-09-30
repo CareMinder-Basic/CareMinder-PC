@@ -1,4 +1,4 @@
-import SettingsModal from "@components/settings/SettingsModal";
+import { SettingsModal } from "@components/settings";
 import modalState from "@libraries/recoil/modal";
 import { Box, Button, Stack, styled, Typography } from "@mui/material";
 import { useState } from "react";
