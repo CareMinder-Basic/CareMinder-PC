@@ -5,11 +5,14 @@ import StaffAccountSettingsTable from "@components/settings/StaffAccountSettings
 import { Stack, Typography } from "@mui/material";
 import { useBooleanState } from "@toss/react";
 import NewStaffModal from "@components/settings/modal/NewStaffModal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
 import InfoModal from "@components/settings/modal/InfoModal";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import settingsLoginState from "@libraries/recoil/settings";
+import modalState from "@libraries/recoil/modal";
 
 // 스태프 계정 설정
 
@@ -31,27 +34,32 @@ export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
   const [openDelete, openDeleteModal, closeDeleteModal] = useBooleanState(false);
   const [isCreate, setIsCreate] = useState<boolean>(false);
+  const [settingsLogin, setSettingsLogin] = useRecoilState(settingsLoginState);
+  const setIsModalOpen = useSetRecoilState(modalState);
 
   const form = useForm<NewStaff>({
     defaultValues,
     mode: "onChange",
   });
 
-  const { handleSubmit, watch } = form;
-
-  useEffect(() => {
-    const subscription = watch(value => {
-      console.log("Current form values:", value);
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  const { handleSubmit } = form;
 
   const onSubmit: SubmitHandler<NewStaff> = data => {
-    console.log("Form submitted with data:", data);
+    console.log(data);
   };
 
   const createNewStaff = () => {
-    setIsCreate(true);
+    if (settingsLogin) {
+      setIsCreate(true);
+    } else {
+      window.alert("스태프 로그인을 해주세요");
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleLogin = () => {
+    window.alert("스태프 로그인을 해주세요");
+    setIsModalOpen(true);
   };
 
   return (
@@ -105,7 +113,10 @@ export const StaffAccount = () => {
               <CButton buttonType="primarySpaureWhite" onClick={createNewStaff}>
                 스태프 계정 생성
               </CButton>
-              <CButton buttonType="primarySpaureWhite" onClick={openCreateModal}>
+              <CButton
+                buttonType="primarySpaureWhite"
+                onClick={settingsLogin ? openCreateModal : handleLogin}
+              >
                 스태프 추가
               </CButton>
             </StaffButtonContainer>

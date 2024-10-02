@@ -109,7 +109,7 @@ const TabButton = styled(Button, {
   "color": isActive ? theme.palette.primary.dark : theme.palette.text.disabled,
   "borderRadius": "100px",
   "&:hover": {
-    backgroundColor: theme.palette.primary.contrastText,
+    backgroundColor: isActive ? theme.palette.primary.contrastText : theme.palette.background,
     color: theme.palette.primary.dark,
   },
 }));
