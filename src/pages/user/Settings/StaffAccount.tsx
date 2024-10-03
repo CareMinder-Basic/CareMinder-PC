@@ -95,6 +95,13 @@ export const StaffAccount = () => {
               </Stack>
               <ConfirmLayout>
                 <CButton
+                  buttonType="primaryWhite"
+                  onClick={() => setIsCreate(prev => !prev)}
+                  style={{ width: "134px", height: "45px" }}
+                >
+                  이전으로
+                </CButton>
+                <CButton
                   buttonType="primary"
                   onClick={handleSubmit(onSubmit)}
                   style={{ width: "134px", height: "45px" }}
@@ -179,6 +186,7 @@ const StaffInputLayout = styled(Box)({
 const ConfirmLayout = styled(Box)({
   display: "flex",
   justifyContent: "center",
+  gap: "40px",
   marginTop: "20px",
 });
 

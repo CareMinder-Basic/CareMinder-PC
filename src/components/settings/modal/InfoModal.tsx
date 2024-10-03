@@ -6,6 +6,8 @@ const MODAL_CONTEXTS = {
   require: { title: "필수 입력 사항이 누락되었습니다.", controlAccount: false },
   doubleCheck: { title: "중복되었습니다.", controlAccount: false },
   error: { title: "오류가 발생했습니다.", controlAccount: false },
+  accountLock: { title: "계정이 잠겼습니다.", controlAccount: false },
+  valueError: { title: "ID/PW 오류입니다.", controlAccount: false },
   confirmFail: { title: "인증실패되었습니다.", controlAccount: false },
   createSuccess: { title: "계정 생성 완료되었습니다.", controlAccount: false },
   checkAddStaff: { title: "스태프를 정말로 추가하시겠습니까?", controlAccount: true },
