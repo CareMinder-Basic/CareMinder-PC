@@ -36,14 +36,16 @@ const StaffAccountSettingsTable = ({ onDelete }: StaffAccountSettingsTableProps)
   return (
     <StTable>
       <thead>
-        {columns.map(column => {
-          return <th>{column.headerName}</th>;
-        })}
+        <tr>
+          {columns.map((column, index) => {
+            return <th key={index}>{column.headerName}</th>;
+          })}
+        </tr>
       </thead>
       <tbody>
-        {rows.map(row => {
+        {rows.map((row, index) => {
           return (
-            <tr>
+            <tr key={index}>
               <td>
                 <ShortComBoxLayout>
                   <CComboBox placeholder={"스태프"} options={[]} value={""} onChange={() => null} />

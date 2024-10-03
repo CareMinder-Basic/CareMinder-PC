@@ -10,7 +10,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
 import InfoModal from "@components/settings/modal/InfoModal";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import settingsLoginState from "@libraries/recoil/settings";
 import modalState from "@libraries/recoil/modal";
 
@@ -34,7 +34,7 @@ export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
   const [openDelete, openDeleteModal, closeDeleteModal] = useBooleanState(false);
   const [isCreate, setIsCreate] = useState<boolean>(false);
-  const [settingsLogin, setSettingsLogin] = useRecoilState(settingsLoginState);
+  const settingsLogin = useRecoilValue(settingsLoginState);
   const setIsModalOpen = useSetRecoilState(modalState);
 
   const form = useForm<NewStaff>({
@@ -60,6 +60,15 @@ export const StaffAccount = () => {
   const handleLogin = () => {
     window.alert("스태프 로그인을 해주세요");
     setIsModalOpen(true);
+  };
+
+  const handleDeleteStaff = () => {
+    if (settingsLogin) {
+      openDeleteModal();
+    } else {
+      window.alert("스태프 로그인을 해주세요");
+      setIsModalOpen(true);
+    }
   };
 
   return (
@@ -121,7 +130,7 @@ export const StaffAccount = () => {
               </CButton>
             </StaffButtonContainer>
           </BodyTitleContainer>
-          <StaffAccountSettingsTable onDelete={openDeleteModal} />
+          <StaffAccountSettingsTable onDelete={handleDeleteStaff} />
           <PaginationContainer>
             <div>
               <PaginationComponent totalPage={5} />
