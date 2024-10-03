@@ -13,6 +13,7 @@ import InfoModal from "@components/settings/modal/InfoModal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import settingsLoginState from "@libraries/recoil/settings";
 import modalState from "@libraries/recoil/modal";
+import TOSModal from "@components/settings/modal/TOSModal";
 
 // 스태프 계정 설정
 
@@ -33,7 +34,10 @@ const quickRegisters: QuickRegisterNewStaff[] = [
 export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
   const [openDelete, openDeleteModal, closeDeleteModal] = useBooleanState(false);
+  const [openTOS, openTOSModal, closeTOSModal] = useBooleanState(false);
+
   const [isCreate, setIsCreate] = useState<boolean>(false);
+
   const settingsLogin = useRecoilValue(settingsLoginState);
   const setIsModalOpen = useSetRecoilState(modalState);
 
@@ -50,7 +54,7 @@ export const StaffAccount = () => {
 
   const createNewStaff = () => {
     if (settingsLogin) {
-      setIsCreate(true);
+      openTOSModal();
     } else {
       window.alert("스태프 로그인을 해주세요");
       setIsModalOpen(true);
@@ -69,6 +73,11 @@ export const StaffAccount = () => {
       window.alert("스태프 로그인을 해주세요");
       setIsModalOpen(true);
     }
+  };
+
+  const handleTOS = () => {
+    setIsCreate(true);
+    closeTOSModal();
   };
 
   return (
@@ -115,11 +124,13 @@ export const StaffAccount = () => {
       ) : (
         <>
           {" "}
-          <NewStaffModal open={open} onClose={closeCreateModal}></NewStaffModal>
+          <NewStaffModal open={open} onClose={closeCreateModal} />
+          <TOSModal open={openTOS} onClose={closeTOSModal} onConfirm={handleTOS} />
           <InfoModal
             open={openDelete}
             onClose={closeDeleteModal}
             modalType={"checkDeleteStaff"}
+            onConfirm={() => null}
           ></InfoModal>
           <BodyTitleContainer>
             <div>
