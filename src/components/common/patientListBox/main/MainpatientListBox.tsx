@@ -3,7 +3,15 @@ import { PatientListBoxType } from "..";
 import { roleColor } from "@utils/homePage";
 import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 
-function MainPatientListBox({ isAccept, data }: { isAccept: boolean; data: PatientListBoxType }) {
+function MainPatientListBox({
+  isAccept,
+  data,
+  onCheckOrOkay,
+}: {
+  isAccept: boolean;
+  data: PatientListBoxType;
+  onCheckOrOkay: (id: number, type: "check" | "okay") => void;
+}) {
   const roleColorPick = roleColor(data.role);
 
   return (
@@ -17,7 +25,10 @@ function MainPatientListBox({ isAccept, data }: { isAccept: boolean; data: Patie
             <span>{data.time}분전</span>
           </TxtBoxRight>
         </TxtBox>
-        <Check color={roleColorPick.dark}>
+        <Check
+          color={roleColorPick.dark}
+          onClick={() => onCheckOrOkay(data.id, isAccept ? "okay" : "check")}
+        >
           {isAccept ? "OK" : <CheckIcon style={{ cursor: "pointer" }} />}
         </Check>
       </Bottom>

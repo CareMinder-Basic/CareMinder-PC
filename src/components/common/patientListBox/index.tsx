@@ -22,9 +22,10 @@ type UserType = {
     | "completedRequest"
     | "completedRequestFocus";
   data: PatientListBoxType;
+  onClickEvent: (id: number, type: "check" | "okay") => void;
 };
 
-export default function PatientBox({ user, data }: UserType) {
+export default function PatientBox({ user, data, onClickEvent }: UserType) {
   // props로 user 'mainWait' | 'mainAccept' | 'staffWait' | 'staffAccept' 로 분리
 
   return (
@@ -32,8 +33,12 @@ export default function PatientBox({ user, data }: UserType) {
       <SwitchCase
         value={user}
         caseBy={{
-          mainWait: <MainPatientListBox isAccept={false} data={data} />,
-          mainAccept: <MainPatientListBox isAccept={true} data={data} />,
+          mainWait: (
+            <MainPatientListBox isAccept={false} data={data} onCheckOrOkay={onClickEvent} />
+          ),
+          mainAccept: (
+            <MainPatientListBox isAccept={true} data={data} onCheckOrOkay={onClickEvent} />
+          ),
           staffWait: <StaffPatientListBox isAccept={false} data={data} />,
           staffAccept: <StaffPatientListBox isAccept={true} data={data} />,
           completedRequest: <CompletedPatientListBox isAccept={false} data={data} />,

@@ -16,6 +16,10 @@ export default function MainHomePage() {
   const [mainWaitIsMine, setMainWaitIsMine] = useState<boolean>(false); //대기중인 내 환자 보기
   const [mainAcceptIsGroup, setMainAcceptIsGroup] = useState<boolean>(false); //수락중인 환자, 환자별로 묶기
 
+  const onCheckOrOkay = (id: number, type: "check" | "okay") => {
+    console.log(id, type);
+  };
+
   useEffect(() => {
     setlayoutState("home");
 
@@ -54,7 +58,7 @@ export default function MainHomePage() {
             </SubTitleRight>
           </SubTitle>
           {waitPatientmockData.mainWait.map(el => (
-            <PatientBox key={el.id} user="mainWait" data={el} />
+            <PatientBox key={el.id} user="mainWait" data={el} onClickEvent={onCheckOrOkay} />
           ))}
         </LeftSection>
         <RightSection>
@@ -70,7 +74,7 @@ export default function MainHomePage() {
             </SubTitleLeft>
           </SubTitle>
           {waitPatientmockData.mainAccept.map(el => (
-            <PatientBox key={el.id} user="mainAccept" data={el} />
+            <PatientBox key={el.id} user="mainAccept" data={el} onClickEvent={onCheckOrOkay} />
           ))}
         </RightSection>
       </>
