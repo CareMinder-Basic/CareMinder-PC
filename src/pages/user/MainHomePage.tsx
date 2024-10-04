@@ -5,14 +5,16 @@ import { waitPatientmockData } from "@components/home/wordMainMockData";
 import { userState } from "@libraries/recoil";
 import layoutState from "@libraries/recoil/layout";
 import { Box, styled } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 export default function MainHomePage() {
+  const navigate = useNavigate();
   const setlayoutState = useSetRecoilState(layoutState);
   const [userStatus] = useRecoilState(userState);
-  const navigate = useNavigate();
+  const [mainWaitIsMine, setMainWaitIsMine] = useState<boolean>(false); //대기중인 내 환자 보기
+  const [mainAcceptIsGroup, setMainAcceptIsGroup] = useState<boolean>(false); //수락중인 환자, 환자별로 묶기
 
   useEffect(() => {
     setlayoutState("home");
@@ -34,11 +36,21 @@ export default function MainHomePage() {
           <Title>대기중인 환자</Title>
           <SubTitle>
             <SubTitleLeft>
-              <span>내 환자만 보기</span> <CSwitch />
+              <span>내 환자만 보기</span>
+              <CSwitch
+                onChange={(el: React.ChangeEvent<HTMLInputElement>) =>
+                  setMainWaitIsMine(el.target.checked)
+                }
+              />
             </SubTitleLeft>
             <SubTitleRight>
               <span>직종</span>
-              <CComboBox placeholder="전체" options={[{ label: "ex", id: 1 }]} />
+              <CComboBox
+                placeholder={"전체"}
+                options={["테스트1", "테스트2"]}
+                value={""}
+                onChange={() => null}
+              />
             </SubTitleRight>
           </SubTitle>
           {waitPatientmockData.mainWait.map(el => (
@@ -49,7 +61,12 @@ export default function MainHomePage() {
           <Title>수락중인 환자</Title>
           <SubTitle>
             <SubTitleLeft>
-              <span>환자별로 묶기</span> <CSwitch />
+              <span>환자별로 묶기</span>{" "}
+              <CSwitch
+                onChange={(el: React.ChangeEvent<HTMLInputElement>) =>
+                  setMainAcceptIsGroup(el.target.checked)
+                }
+              />
             </SubTitleLeft>
           </SubTitle>
           {waitPatientmockData.mainAccept.map(el => (
@@ -103,7 +120,7 @@ const SubTitleRight = styled("div")`
     font-size: 14px;
   }
   & > span {
-    width: 100%;
+    width: 40px;
     margin-right: 12px;
   }
 `;
