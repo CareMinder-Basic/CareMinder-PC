@@ -3,9 +3,9 @@ import { SwitchCase } from "@toss/react";
 import StaffPatientListBox from "./staff/StaffpatientListBox";
 import MainPatientListBox from "./main/MainpatientListBox";
 import CompletedPatientListBox from "./completedRequest/CompletedpatientListBox";
-import { UserType } from "@models/home";
+import { UserTypes } from "@models/home";
 
-export default function PatientBox({ user, data, onWaitOrAccept }: UserType) {
+export default function PatientBox({ user, data, onWaitOrAccept }: UserTypes) {
   // props로 user 'mainWait' | 'mainAccept' | 'staffWait' | 'staffAccept' 로 분리
 
   return (

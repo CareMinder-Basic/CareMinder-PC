@@ -1,6 +1,6 @@
 import { roleProps } from "@utils/homePage";
 
-export type UserType = {
+export type UserTypes = {
   user:
     | "mainWait"
     | "mainAccept"
