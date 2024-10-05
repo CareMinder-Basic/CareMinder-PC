@@ -2,19 +2,13 @@ import { Stack, styled } from "@mui/material";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 import { ChatBox } from "@components/home";
-import { PatientListBoxType } from "..";
 import { roleColor } from "@utils/homePage";
 import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 import { useState } from "react";
 import { CComboBox } from "@components/common/atom/C-ComboBox";
+import { MainListBoxProps } from "@models/home";
 
-type StaffListBoxProps = {
-  isAccept: boolean;
-  data: PatientListBoxType;
-  onWaitOrAccept: (id: number, type: "wait" | "accept") => void;
-};
-
-function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: StaffListBoxProps) {
+function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProps) {
   const roleColorPick = roleColor(data.role);
 
   const [isOptions, setIsOptions] = useState(false);

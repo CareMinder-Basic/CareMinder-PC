@@ -1,29 +1,9 @@
 import { SwitchCase } from "@toss/react";
 
 import StaffPatientListBox from "./staff/StaffpatientListBox";
-import { roleProps } from "@utils/homePage";
 import MainPatientListBox from "./main/MainpatientListBox";
 import CompletedPatientListBox from "./completedRequest/CompletedpatientListBox";
-
-export type PatientListBoxType = {
-  id: number;
-  place: string;
-  request: string;
-  time: string;
-  role: roleProps;
-  isNew?: boolean;
-};
-type UserType = {
-  user:
-    | "mainWait"
-    | "mainAccept"
-    | "staffWait"
-    | "staffAccept"
-    | "completedRequest"
-    | "completedRequestFocus";
-  data: PatientListBoxType;
-  onWaitOrAccept?: (id: number, type: "wait" | "accept") => void;
-};
+import { UserType } from "@models/home";
 
 export default function PatientBox({ user, data, onWaitOrAccept }: UserType) {
   // props로 user 'mainWait' | 'mainAccept' | 'staffWait' | 'staffAccept' 로 분리

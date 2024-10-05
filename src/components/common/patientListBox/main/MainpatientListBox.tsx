@@ -1,13 +1,7 @@
 import { Stack, styled } from "@mui/material";
-import { PatientListBoxType } from "..";
 import { roleColor } from "@utils/homePage";
 import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
-
-type MainListBoxProps = {
-  isAccept: boolean;
-  data: PatientListBoxType;
-  onWaitOrAccept: (id: number, type: "wait" | "accept") => void;
-};
+import { MainListBoxProps } from "@models/home";
 
 function MainPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProps) {
   const roleColorPick = roleColor(data.role);

@@ -4,6 +4,7 @@ import PatientBox from "@components/common/patientListBox";
 import { waitPatientmockData } from "@components/home/wordMainMockData";
 import { userState } from "@libraries/recoil";
 import layoutState from "@libraries/recoil/layout";
+import { CSwitchType } from "@models/home";
 import { Box, styled } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +41,8 @@ export default function MainHomePage() {
         <Title>대기중인 환자</Title>
         <SubTitle>
           <SubTitleLeft>
-            <span>내 환자만 보기</span> <CSwitch />
+            <span>내 환자만 보기</span>
+            <CSwitch onChange={(el: CSwitchType) => setStaffWaitIsMine(el.target.checked)} />
           </SubTitleLeft>
           <SubTitleRight>
             <span>직종</span>
@@ -60,7 +62,8 @@ export default function MainHomePage() {
         <Title>수락중인 환자</Title>
         <SubTitle>
           <SubTitleLeft>
-            <span>환자별로 묶기</span> <CSwitch />
+            <span>환자별로 묶기</span>
+            <CSwitch onChange={(el: CSwitchType) => setStaffAcceptIsGroup(el.target.checked)} />
           </SubTitleLeft>
         </SubTitle>
         {waitPatientmockData.staffAccept.map(el => (
