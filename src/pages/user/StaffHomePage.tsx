@@ -5,7 +5,7 @@ import { waitPatientmockData } from "@components/home/wordMainMockData";
 import { userState } from "@libraries/recoil";
 import layoutState from "@libraries/recoil/layout";
 import { Box, styled } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
@@ -13,6 +13,13 @@ export default function MainHomePage() {
   const setlayoutState = useSetRecoilState(layoutState);
   const [userStatus] = useRecoilState(userState);
   const navigate = useNavigate();
+  const [staffWaitIsMine, setStaffWaitIsMine] = useState<boolean>(false); //대기중인 내 환자 보기
+  const [staffAcceptIsGroup, setStaffAcceptIsGroup] = useState<boolean>(false); //수락중인 환자, 환자별로 묶기
+
+  const onWaitOrAccept = (id: number, type: "wait" | "accept") => {
+    //onCheckOrOkay fn은 check버튼인지 okay버튼인지와 그 게시글의 id를 가져온다.
+    console.log(id, type);
+  };
 
   useEffect(() => {
     setlayoutState("home");
@@ -37,11 +44,16 @@ export default function MainHomePage() {
           </SubTitleLeft>
           <SubTitleRight>
             <span>직종</span>
-            <CComboBox placeholder="전체" options={[{ label: "ex", id: 1 }]} />
+            <CComboBox
+              placeholder={"테스트"}
+              options={["테스트1", "테스트2"]}
+              value={""}
+              onChange={() => null}
+            />
           </SubTitleRight>
         </SubTitle>
         {waitPatientmockData.staffWait.map(el => (
-          <PatientBox key={el.id} user="staffWait" data={el} />
+          <PatientBox key={el.id} user="staffWait" data={el} onWaitOrAccept={onWaitOrAccept} />
         ))}
       </LeftSection>
       <RightSection>
@@ -52,7 +64,7 @@ export default function MainHomePage() {
           </SubTitleLeft>
         </SubTitle>
         {waitPatientmockData.staffAccept.map(el => (
-          <PatientBox key={el.id} user="staffAccept" data={el} />
+          <PatientBox key={el.id} user="staffAccept" data={el} onWaitOrAccept={onWaitOrAccept} />
         ))}
       </RightSection>
     </>
@@ -101,7 +113,7 @@ const SubTitleRight = styled("div")`
     font-size: 14px;
   }
   & > span {
-    width: 100%;
+    width: 40px;
     margin-right: 12px;
   }
 `;

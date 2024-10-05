@@ -11,9 +11,10 @@ import { CComboBox } from "@components/common/atom/C-ComboBox";
 type StaffListBoxProps = {
   isAccept: boolean;
   data: PatientListBoxType;
+  onWaitOrAccept: (id: number, type: "wait" | "accept") => void;
 };
 
-function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
+function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: StaffListBoxProps) {
   const roleColorPick = roleColor(data.role);
 
   const [isOptions, setIsOptions] = useState(false);
@@ -64,12 +65,10 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
               <span>담당직종 변경</span>
               <BoxWrapper>
                 <CComboBox
-                  placeholder="간호사"
-                  options={[
-                    { label: "의사", id: 1 },
-                    { label: "조무사", id: 2 },
-                    { label: "직원", id: 3 },
-                  ]}
+                  placeholder={"테스트"}
+                  options={["테스트1", "테스트2"]}
+                  value={""}
+                  onChange={() => null}
                 />
               </BoxWrapper>
             </Options>
@@ -84,7 +83,10 @@ function StaffPatientListBox({ isAccept, data }: StaffListBoxProps) {
           </TxtBoxLeft>
           <TxtBoxRight>{data.time}분전</TxtBoxRight>
         </TxtBox>
-        <Check color={roleColorPick.dark}>
+        <Check
+          color={roleColorPick.dark}
+          onClick={() => onWaitOrAccept(data.id, isAccept ? "accept" : "wait")}
+        >
           {isAccept ? <CheckIcon /> : <ArrowForwardRoundedIcon />}
         </Check>
       </Bottom>

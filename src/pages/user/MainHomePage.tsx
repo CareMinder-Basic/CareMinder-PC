@@ -16,7 +16,7 @@ export default function MainHomePage() {
   const [mainWaitIsMine, setMainWaitIsMine] = useState<boolean>(false); //대기중인 내 환자 보기
   const [mainAcceptIsGroup, setMainAcceptIsGroup] = useState<boolean>(false); //수락중인 환자, 환자별로 묶기
 
-  const onCheckOrOkay = (id: number, type: "check" | "okay") => {
+  const onWaitOrAccept = (id: number, type: "wait" | "accept") => {
     //onCheckOrOkay fn은 check버튼인지 okay버튼인지와 그 게시글의 id를 가져온다.
     console.log(id, type);
   };
@@ -59,7 +59,7 @@ export default function MainHomePage() {
             </SubTitleRight>
           </SubTitle>
           {waitPatientmockData.mainWait.map(el => (
-            <PatientBox key={el.id} user="mainWait" data={el} onClickEvent={onCheckOrOkay} />
+            <PatientBox key={el.id} user="mainWait" data={el} onWaitOrAccept={onWaitOrAccept} />
           ))}
         </LeftSection>
         <RightSection>
@@ -75,7 +75,7 @@ export default function MainHomePage() {
             </SubTitleLeft>
           </SubTitle>
           {waitPatientmockData.mainAccept.map(el => (
-            <PatientBox key={el.id} user="mainAccept" data={el} onClickEvent={onCheckOrOkay} />
+            <PatientBox key={el.id} user="mainAccept" data={el} onWaitOrAccept={onWaitOrAccept} />
           ))}
         </RightSection>
       </>

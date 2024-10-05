@@ -3,15 +3,13 @@ import { PatientListBoxType } from "..";
 import { roleColor } from "@utils/homePage";
 import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 
-function MainPatientListBox({
-  isAccept,
-  data,
-  onCheckOrOkay,
-}: {
+type MainListBoxProps = {
   isAccept: boolean;
   data: PatientListBoxType;
-  onCheckOrOkay: (id: number, type: "check" | "okay") => void;
-}) {
+  onWaitOrAccept: (id: number, type: "wait" | "accept") => void;
+};
+
+function MainPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProps) {
   const roleColorPick = roleColor(data.role);
 
   return (
@@ -27,7 +25,7 @@ function MainPatientListBox({
         </TxtBox>
         <Check
           color={roleColorPick.dark}
-          onClick={() => onCheckOrOkay(data.id, isAccept ? "okay" : "check")}
+          onClick={() => onWaitOrAccept(data.id, isAccept ? "accept" : "wait")}
         >
           {isAccept ? "OK" : <CheckIcon style={{ cursor: "pointer" }} />}
         </Check>
