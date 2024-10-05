@@ -18,6 +18,8 @@ export default function MenuLayout({ pageName, routePath, icon }: PageButtonProp
   const user = useRecoilValue(userState);
   let menuButtonStyle = useMenuButtonStyles(isActive);
 
+  console.log(routePath);
+
   switch (user?.type) {
     case "main":
       menuButtonStyle = useMenuButtonStyles(isActive);
@@ -69,8 +71,7 @@ const useStaffMenuButtonStyles = (isActive: boolean): SxProps<Theme> => ({
   justifyContent: "center",
   alignItems: "center",
 
-  backgroundColor: theme => theme.palette.secondary[isActive ? "light" : "main"],
-
+  backgroundColor: theme => theme.palette.secondary[isActive ? "dark" : "main"],
   color: theme => theme.palette.secondary[isActive ? "contrastText" : "light"],
 });
 

@@ -34,7 +34,6 @@ const routes: RouteObject[] = [
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-
           { path: RoutePath.AdminNoticeWrite, element: <AdminWardInoutManagementPage /> },
         ],
       },

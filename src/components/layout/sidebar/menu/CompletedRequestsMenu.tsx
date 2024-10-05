@@ -1,6 +1,5 @@
 import { ReactComponent as CompletedRequests } from "@assets/menuIcons/completedRequests.svg";
 import MenuLayout from "./MenuLayout";
-import RoutePath from "@routes/routePath";
 import { SwitchCase } from "@toss/react";
 import { useRecoilValue } from "recoil";
 import { userState } from "@libraries/recoil";
