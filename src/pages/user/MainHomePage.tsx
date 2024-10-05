@@ -17,6 +17,7 @@ export default function MainHomePage() {
   const [mainAcceptIsGroup, setMainAcceptIsGroup] = useState<boolean>(false); //수락중인 환자, 환자별로 묶기
 
   const onCheckOrOkay = (id: number, type: "check" | "okay") => {
+    //onCheckOrOkay fn은 check버튼인지 okay버튼인지와 그 게시글의 id를 가져온다.
     console.log(id, type);
   };
 
@@ -65,7 +66,7 @@ export default function MainHomePage() {
           <Title>수락중인 환자</Title>
           <SubTitle>
             <SubTitleLeft>
-              <span>환자별로 묶기</span>{" "}
+              <span>환자별로 묶기</span>
               <CSwitch
                 onChange={(el: React.ChangeEvent<HTMLInputElement>) =>
                   setMainAcceptIsGroup(el.target.checked)
