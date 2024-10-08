@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
+import { ReactComponent as EmptyStaff } from "@/assets/EmptyStaff.svg";
 
 // 스태프 계정 설정
 
@@ -29,6 +30,7 @@ const quickRegisters: QuickRegisterNewStaff[] = [
 export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
   const [isCreate, setIsCreate] = useState<boolean>(false);
+  const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
   const form = useForm<NewStaff>({
     defaultValues,
@@ -87,12 +89,23 @@ export const StaffAccount = () => {
               </CButton>
             </StaffButtonContainer>
           </BodyTitleContainer>
-          <StaffAccountSettingsTable />
-          <PaginationContainer>
-            <div>
-              <PaginationComponent totalPage={5} />
-            </div>
-          </PaginationContainer>
+          {isEmpty ? (
+            <>
+              <EmptyStaffContainer>
+                <EmptyStaff />
+                <p>등록된 스태프가 없습니다.</p>
+              </EmptyStaffContainer>
+            </>
+          ) : (
+            <>
+              <StaffAccountSettingsTable />
+              <PaginationContainer>
+                <div>
+                  <PaginationComponent totalPage={5} />
+                </div>
+              </PaginationContainer>
+            </>
+          )}
         </>
       )}
     </>
@@ -149,3 +162,13 @@ const Title = styled(Typography)(({ theme }) => ({
   lineHeight: "24px",
   letterSpacing: "-3%",
 }));
+
+const EmptyStaffContainer = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+
+  minHeight: "600px",
+  marginBottom: "100px",
+});
