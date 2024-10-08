@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import palette from "@styles/palette";
 import { CComboBox } from "@components/common/atom/C-ComboBox";
@@ -27,19 +27,25 @@ const rows = [
   { id: 9, Section: "Snow", TableName: "Jon", PatientName: 35 },
 ];
 
-const StaffAccountSettingsTable: FC = () => {
+interface StaffAccountSettingsTableProps {
+  onDelete: () => void;
+}
+
+const StaffAccountSettingsTable = ({ onDelete }: StaffAccountSettingsTableProps) => {
   const [options, setOptions] = useState<string[]>(["구역1", "구역2", "구역3", "구역4"]);
   return (
     <StTable>
       <thead>
-        {columns.map(column => {
-          return <th>{column.headerName}</th>;
-        })}
+        <tr>
+          {columns.map((column, index) => {
+            return <th key={index}>{column.headerName}</th>;
+          })}
+        </tr>
       </thead>
       <tbody>
-        {rows.map(row => {
+        {rows.map((row, index) => {
           return (
-            <tr>
+            <tr key={index}>
               <td>
                 <ShortComBoxLayout>
                   <CComboBox placeholder={"스태프"} options={[]} value={""} onChange={() => null} />
@@ -106,7 +112,7 @@ const StaffAccountSettingsTable: FC = () => {
                 </LongComBoxLayout>
               </td>
               <td>
-                <DeleteLayout>
+                <DeleteLayout onClick={onDelete}>
                   <DeleteButton />
                 </DeleteLayout>
               </td>
@@ -159,4 +165,5 @@ const DeleteLayout = styled.div`
   width: 80px;
   height: 36px;
   margin: 0 auto;
+  cursor: pointer;
 `;

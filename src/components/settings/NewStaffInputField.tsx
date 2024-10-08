@@ -54,7 +54,7 @@ export default function NewStaffInputField({ field, form }: InputFieldProps) {
 
 const validationRules = {
   name: { required: "이름을 입력해주세요." },
-  occupation: { required: "이름을 입력해주세요." },
+  occupation: {},
   username: { required: "아이디를 입력해주세요." },
   password: {
     required: "비밀번호를 입력해주세요.",
