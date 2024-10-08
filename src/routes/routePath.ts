@@ -10,9 +10,9 @@ const RoutePath = {
   AdminWardManagement: "/admin",
   AdminWardInOut: "/admin/staff/inout",
   AdminNotice: "/admin/staff/notice",
-  AdminNoticeWrite: "/admin/staff/notice/write",
 
-  AdminStaffManagement: "/admin/staff",
+
+  // AdminStaffManagement: "/admin/staff",
 
   Signin: "/sign-in",
   AdminSignin: "/sign-in/admin",

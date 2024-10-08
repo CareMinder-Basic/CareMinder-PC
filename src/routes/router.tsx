@@ -48,6 +48,7 @@ const routes: RouteObject[] = [
           { path: RoutePath.AdminNoticeWrite, element: <AdminNoticeWritePage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
           { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
+
         ],
       },
     ],
