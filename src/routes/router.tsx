@@ -17,6 +17,8 @@ import {
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
+import AdminNoticePage from "@pages/admin/AdminNoticePage";
+import AdminNoticeWritePage from "@pages/admin/AdminNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -42,7 +44,11 @@ const routes: RouteObject[] = [
         children: [
           { index: true, element: <AdminWardManagementPage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-          // { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
+          { path: RoutePath.AdminNotice, element: <AdminNoticePage /> },
+          { path: RoutePath.AdminNoticeWrite, element: <AdminNoticeWritePage /> },
+          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
+          { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
+
         ],
       },
     ],
