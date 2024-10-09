@@ -1,19 +1,17 @@
 import { Stack, styled } from "@mui/material";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-import { ChatBox } from "@components/home";
 import { roleColor } from "@utils/homePage";
-import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
 import { useState } from "react";
-import { CComboBox } from "@components/common/atom/C-ComboBox";
-import { MainListBoxProps } from "@models/home";
+import { ChatBox } from "@components/home";
+import { ReactComponent as SendIcon } from "@/assets/completedRequests/send.svg";
+import { ReactComponent as CheckIcon } from "@/assets/homeIcons/check.svg";
+import { StaffListBoxProps } from "@models/home";
 
-function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProps) {
+function CompletedPatientListBox({ isAccept, data }: StaffListBoxProps) {
   const roleColorPick = roleColor(data.role);
 
   const [isOptions, setIsOptions] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [isChatting, setIsChatting] = useState(false);
 
   const onOptionOnOff = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -24,13 +22,9 @@ function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProp
       setIsOptions(true);
     }
   };
-  const onOpenChatting = () => {
-    if (!isAccept) return;
-    setIsChatting(prev => !prev);
-  };
 
   return (
-    <InnerContainer color={roleColorPick.light} onClick={onOpenChatting}>
+    <InnerContainer color={roleColorPick.light}>
       <Title color={roleColorPick.dark} tabIndex={0} onBlur={() => setIsOptions(false)}>
         <div>{data.place}</div>
         <div>
@@ -40,31 +34,9 @@ function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProp
           />
           {isOptions && (
             <Options>
-              {isAccept ? (
-                <Option onMouseDown={() => console.log("수락취소")}>수락취소</Option>
-              ) : (
-                <Option onMouseDown={() => setIsEdit(true)}>담당직종 변경</Option>
-              )}
-              <Option onMouseDown={() => console.log("퇴원")}>퇴원</Option>
-            </Options>
-          )}
-          {isEdit && (
-            <Options
-              tabIndex={0}
-              onBlur={() => {
-                setIsEdit(false);
-                setIsOptions(false);
-              }}
-            >
-              <span>담당직종 변경</span>
-              <BoxWrapper>
-                <CComboBox
-                  placeholder={"테스트"}
-                  options={["테스트1", "테스트2"]}
-                  value={""}
-                  onChange={() => null}
-                />
-              </BoxWrapper>
+              <Option>복원하기</Option>
+
+              <Option>퇴원 처리하기</Option>
             </Options>
           )}
         </div>
@@ -77,22 +49,26 @@ function StaffPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProp
           </TxtBoxLeft>
           <TxtBoxRight>{data.time}분전</TxtBoxRight>
         </TxtBox>
-        <Check
-          color={roleColorPick.dark}
-          onClick={() => onWaitOrAccept(data.id, isAccept ? "accept" : "wait")}
-        >
-          {isAccept ? <CheckIcon /> : <ArrowForwardRoundedIcon />}
-        </Check>
+        {isAccept && (
+          <Check color={roleColorPick.dark}>
+            <CheckIcon />
+          </Check>
+        )}
       </Bottom>
-      {isAccept && isChatting && (
+      {isAccept && (
         <ChatContainer>
           <ChatBox leftorRight="right" />
+          <ChatBox leftorRight="left" />
+          <ChatInputWrapper>
+            <input placeholder="메세지를 입력해 주세요" />
+            <CustomSendIcon />
+          </ChatInputWrapper>
         </ChatContainer>
       )}
     </InnerContainer>
   );
 }
-export default StaffPatientListBox;
+export default CompletedPatientListBox;
 
 const InnerContainer = styled(Stack)<{ color: string }>`
   border-radius: 12px;
@@ -102,6 +78,7 @@ const InnerContainer = styled(Stack)<{ color: string }>`
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
+  cursor: pointer;
 `;
 
 const Title = styled("div")<{ color: string }>`
@@ -140,17 +117,7 @@ const Bottom = styled("div")`
   align-items: end;
   justify-content: space-between;
 `;
-const Check = styled("div")<{ color: string }>`
-  background-color: ${({ color }) => color};
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  font-weight: 900;
-`;
+
 const SmallCheck = styled("div")<{ color: string }>`
   background-color: ${({ color }) => color};
   border-radius: 50%;
@@ -169,6 +136,7 @@ const SmallCheck = styled("div")<{ color: string }>`
 const ChatContainer = styled("div")`
   border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
   margin-top: 12px;
+  padding: 30px 0 12px 0;
 `;
 const Options = styled("div")`
   background-color: ${({ theme }) => theme.palette.primary.contrastText};
@@ -198,8 +166,33 @@ const Option = styled("div")`
     color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
-const BoxWrapper = styled("div")`
-  height: 39px;
-  width: 130px;
-  margin-top: 8px;
+const ChatInputWrapper = styled("div")`
+  position: relative;
+  padding-top: 16px;
+  border-top: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
+  margin-top: 30px;
+  & > input {
+    width: 100%;
+    border-radius: 100px;
+    padding: 8px 45px 8px 16px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+`;
+const CustomSendIcon = styled(SendIcon)`
+  position: absolute;
+  top: 21px;
+  right: 12px;
+`;
+const Check = styled("div")<{ color: string }>`
+  background-color: ${({ color }) => color};
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  font-weight: 900;
 `;
