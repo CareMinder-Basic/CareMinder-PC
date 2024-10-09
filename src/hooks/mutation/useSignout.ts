@@ -1,4 +1,3 @@
-import { SigninFormData } from "@models/signin";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "@/utils/axios/axiosInstance";
 import Cookies from "js-cookie";
@@ -27,3 +26,13 @@ export default function useSignOut() {
     },
   });
 }
+
+/**
+ * No description
+ *
+ * @tags useSignout
+ * @name AppControllerInitialize
+ * @summary 로그아웃 요청
+ * @request POST:
+ * @secure /staff/logout
+ */

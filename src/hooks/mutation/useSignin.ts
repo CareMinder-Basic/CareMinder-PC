@@ -31,3 +31,13 @@ export default function useSignin() {
     },
   });
 }
+
+/**
+ * No description
+ *
+ * @tags useSignIn
+ * @name AppControllerInitialize
+ * @summary 로그인 요청
+ * @request POST:
+ * @secure /staff/sign-up
+ */
