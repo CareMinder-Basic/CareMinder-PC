@@ -1,6 +1,5 @@
 import { SigninFormData } from "@models/signin";
-
-import { Button, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
 import TextField from "./TextField";
 import CButton from "@components/common/atom/C-Button";
@@ -13,11 +12,20 @@ type SigninFormProps = {
 export default function SigninForm({ form, onSubmit }: SigninFormProps) {
   const { handleSubmit } = form;
 
+  const handleFormSubmit = (data: SigninFormData) => {
+    console.log(data);
+    onSubmit(data);
+  };
+
   return (
-    <Container onSubmit={handleSubmit(onSubmit)}>
+    <Container>
       <TextField label="ID" name="id" form={form} />
       <TextField label="PW" name="password" form={form} />
-      <CButton buttonType="login" style={{ marginTop: "43.22px" }}>
+      <CButton
+        buttonType="login"
+        style={{ marginTop: "43.22px" }}
+        onClick={handleSubmit(handleFormSubmit)}
+      >
         로그인
       </CButton>
     </Container>

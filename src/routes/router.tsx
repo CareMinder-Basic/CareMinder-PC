@@ -16,6 +16,8 @@ import {
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
+import AdminNoticePage from "@pages/admin/AdminNoticePage";
+import AdminNoticeWritePage from "@pages/admin/AdminNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -42,8 +44,6 @@ const routes: RouteObject[] = [
         element: <AuthorizedRoute allowedRoles={["admin"]} />,
         children: [
           { index: true, element: <AdminWardManagementPage /> },
-
-          // { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
         ],
       },
     ],
