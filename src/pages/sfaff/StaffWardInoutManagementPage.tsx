@@ -6,7 +6,7 @@ import CSearchBox from "@components/common/atom/C-SearchBox";
 import { ReactComponent as ArrayIcon } from "@assets/array.svg";
 import PaginationComponent from "@components/common/pagination";
 
-const AdminWardInoutManagementPage = () => {
+const StaffWardInoutManagementPage = () => {
   return (
     <Container>
       <div>
@@ -48,7 +48,7 @@ const AdminWardInoutManagementPage = () => {
   );
 };
 
-export default AdminWardInoutManagementPage;
+export default StaffWardInoutManagementPage;
 
 /** styles */
 

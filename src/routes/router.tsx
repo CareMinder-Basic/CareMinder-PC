@@ -4,7 +4,6 @@ import AuthenticatedLayout from "@components/layout";
 import AuthorizedRoute from "@routes/AuthorizedRoute";
 import {
   AdminSigninPage,
-  AdminWardManagementPage,
   AdminWardInoutManagementPage,
   CompletedRequestsPage,
   DietPage,
@@ -16,8 +15,8 @@ import {
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
-import AdminNoticePage from "@pages/admin/AdminNoticePage";
-import AdminNoticeWritePage from "@pages/admin/AdminNoticeWritePage";
+import StaffNoticePage from "@pages/sfaff/StaffNoticePage";
+import StaffNoticeWritePage from "@pages/sfaff/StaffNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -35,15 +34,16 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
-          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-          { path: RoutePath.AdminNoticeWrite, element: <AdminWardInoutManagementPage /> },
         ],
       },
       {
-        path: RoutePath.AdminWardManagement,
-        element: <AuthorizedRoute allowedRoles={["admin"]} />,
+        path: RoutePath.StaffWardManagement,
+        element: <AuthorizedRoute allowedRoles={["staff"]} />,
         children: [
-          { index: true, element: <AdminWardManagementPage /> },
+          { index: true, element: <MainHomePage /> },
+          { path: RoutePath.StaffWardInOut, element: <AdminWardInoutManagementPage /> },
+          { path: RoutePath.StaffNotice, element: <StaffNoticePage /> },
+          { path: RoutePath.StaffNoticeWrite, element: <StaffNoticeWritePage /> },
         ],
       },
     ],
