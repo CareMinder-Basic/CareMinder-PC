@@ -1,109 +1,49 @@
-import { PatientListBoxType } from "@components/common/patientListBox";
+import { PatientListBoxType } from "@models/home";
 
-interface WaitPatientMockData {
-  mainWait: PatientListBoxType[];
-  mainAccept: PatientListBoxType[];
-  staffWait: PatientListBoxType[];
-  staffAccept: PatientListBoxType[];
-  completedRequest: PatientListBoxType[];
-}
-export const waitPatientmockData: WaitPatientMockData = {
-  mainWait: [
-    {
-      id: 1,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "nerse",
-    },
-    {
-      id: 2,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "assistant",
-    },
-  ],
-  mainAccept: [
-    {
-      id: 1,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "nerse",
-      isNew: false,
-    },
-    {
-      id: 2,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "staff",
-      isNew: true,
-    },
-  ],
-  staffWait: [
-    {
-      id: 1,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "nerse",
-    },
-    {
-      id: 2,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "assistant",
-    },
-  ],
-  staffAccept: [
-    {
-      id: 1,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "nerse",
-      isNew: false,
-    },
-    {
-      id: 2,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "staff",
-      isNew: true,
-    },
-  ],
-  completedRequest: [
-    {
-      id: 1,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "nerse",
-    },
-    {
-      id: 2,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "staff",
-    },
-    {
-      id: 3,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "staff",
-    },
-    {
-      id: 4,
-      place: "경증 환자실 (T13)",
-      request: "진통제를 추가적으로 받을 수 있나요?",
-      time: "3",
-      role: "staff",
-    },
-  ],
-};
+type WaitPatientMockData = PatientListBoxType[];
+
+export const waitPatientmockData: WaitPatientMockData = [
+  {
+    requestStatus: "PENDING",
+    content: "환자 요청1",
+    tabletId: 1,
+    createdAt: "2024-10-09T12:21:10",
+    staffId: null,
+    patientRequestId: 1,
+    place: "병동1",
+    role: "staff",
+  },
+  {
+    requestStatus: "PENDING",
+    content: "환자 요청2",
+    tabletId: 1,
+    createdAt: "2024-10-09T12:21:10",
+    staffId: 3,
+    patientRequestId: 2,
+    place: "병동1",
+    role: "staff",
+  },
+  {
+    requestStatus: "PENDING",
+    content: "환자 요청1",
+    tabletId: 2,
+    createdAt: "2024-10-09T12:21:10",
+    staffId: null,
+    patientRequestId: 3,
+    place: "병동1",
+    role: "staff",
+  },
+  {
+    requestStatus: "PENDING",
+    content: "환자 요청2",
+    tabletId: 2,
+    createdAt: "2024-10-09T12:21:10",
+    staffId: null,
+    patientRequestId: 4,
+    place: "병동1",
+    role: "staff",
+  },
+];
+
+//장소 없음
+//role이없음 간호사인지 의사꺼인지 확인이 필요함

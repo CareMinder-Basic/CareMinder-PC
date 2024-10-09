@@ -55,8 +55,13 @@ export default function MainHomePage() {
               />
             </SubTitleRight>
           </SubTitle>
-          {waitPatientmockData.mainWait.map(el => (
-            <PatientBox key={el.id} user="mainWait" data={el} onWaitOrAccept={onWaitOrAccept} />
+          {waitPatientmockData.map(el => (
+            <PatientBox
+              key={el.patientRequestId}
+              user="mainWait"
+              data={el}
+              onWaitOrAccept={onWaitOrAccept}
+            />
           ))}
         </LeftSection>
         <RightSection>
@@ -67,8 +72,13 @@ export default function MainHomePage() {
               <CSwitch onChange={(el: CSwitchType) => setMainAcceptIsGroup(el.target.checked)} />
             </SubTitleLeft>
           </SubTitle>
-          {waitPatientmockData.mainAccept.map(el => (
-            <PatientBox key={el.id} user="mainAccept" data={el} onWaitOrAccept={onWaitOrAccept} />
+          {waitPatientmockData.map(el => (
+            <PatientBox
+              key={el.patientRequestId}
+              user="mainAccept"
+              data={el}
+              onWaitOrAccept={onWaitOrAccept}
+            />
           ))}
         </RightSection>
       </>

@@ -11,15 +11,15 @@ function MainPatientListBox({ isAccept, data, onWaitOrAccept }: MainListBoxProps
       <Title color={roleColorPick.dark}>{data.place}</Title>
       <Bottom>
         <TxtBox>
-          <TxtBoxLeft>{data.request}</TxtBoxLeft>
+          <TxtBoxLeft>{data.content}</TxtBoxLeft>
           <TxtBoxRight>
             {data.isNew && <SmallCheck color={roleColorPick.dark}>N</SmallCheck>}
-            <span>{data.time}분전</span>
+            <span>{data.createdAt}분전</span>
           </TxtBoxRight>
         </TxtBox>
         <Check
           color={roleColorPick.dark}
-          onClick={() => onWaitOrAccept(data.id, isAccept ? "accept" : "wait")}
+          onClick={() => onWaitOrAccept(data.patientRequestId, isAccept ? "accept" : "wait")}
         >
           {isAccept ? "OK" : <CheckIcon style={{ cursor: "pointer" }} />}
         </Check>

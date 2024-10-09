@@ -13,11 +13,14 @@ export type UserTypes = {
 };
 
 export type PatientListBoxType = {
-  id: number;
+  tabletId: number;
+  staffId: number;
+  patientRequestId: number;
   place: string;
-  request: string;
-  time: string;
+  content: string;
+  createdAt: string;
   role: roleProps;
+  requestStatus: string;
   isNew?: boolean;
 };
 
