@@ -1,6 +1,6 @@
 import { SigninFormData } from "@models/signin";
 import { useMutation } from "@tanstack/react-query";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axios/axiosInstance";
 import Cookies from "js-cookie";
 import { useSetRecoilState } from "recoil";
 import { userState } from "@libraries/recoil";

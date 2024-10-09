@@ -6,7 +6,7 @@ import { userState } from "@libraries/recoil";
 import { Box, CircularProgress } from "@mui/material";
 import { useCallbackOnce } from "@toss/react";
 import Cookies from "js-cookie";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/utils/axios/axiosInstance";
 
 type AuthorizedRouteProps = {
   allowedRoles: UserType[];
@@ -24,7 +24,6 @@ export default function AuthorizedRoute({ allowedRoles }: AuthorizedRouteProps) 
     navigate(-1);
   }, []);
 
-  //유저 타입별 접근 권한
   useEffect(() => {
     //accessToken && refreshToken
     getUser();
@@ -51,6 +50,7 @@ export default function AuthorizedRoute({ allowedRoles }: AuthorizedRouteProps) 
     } catch {
       alert("로그인이 필요합니다.");
       Cookies.set("accessToken", "");
+      Cookies.set("refreshToken", "");
       setIsLogin(false);
       navigate("/sign-in");
     }
