@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@components/layout";
 import AuthorizedRoute from "@routes/AuthorizedRoute";
 import {
   AdminSigninPage,
-  AdminWardInoutManagementPage,
+  StaffWardInoutManagementPage,
   CompletedRequestsPage,
   DietPage,
   NoticePage,
@@ -12,11 +12,11 @@ import {
   RequestsPage,
   SettingsPage,
   SigninPage,
+  StaffNoticeWritePage,
+  StaffNoticePage,
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
-import StaffNoticePage from "@pages/sfaff/StaffNoticePage";
-import StaffNoticeWritePage from "@pages/sfaff/StaffNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -24,7 +24,7 @@ const routes: RouteObject[] = [
     element: <AuthenticatedLayout />,
     children: [
       {
-        element: <AuthorizedRoute allowedRoles={["main", "staff"]} />,
+        element: <AuthorizedRoute allowedRoles={["main"]} />,
         children: [
           { index: true, element: <MainHomePage /> },
           { path: RoutePath.StaffHomePage, element: <StaffHomePage /> },
@@ -41,15 +41,20 @@ const routes: RouteObject[] = [
         element: <AuthorizedRoute allowedRoles={["staff"]} />,
         children: [
           { index: true, element: <MainHomePage /> },
-          { path: RoutePath.StaffWardInOut, element: <AdminWardInoutManagementPage /> },
+          { path: RoutePath.StaffWardInOut, element: <StaffWardInoutManagementPage /> },
           { path: RoutePath.StaffNotice, element: <StaffNoticePage /> },
           { path: RoutePath.StaffNoticeWrite, element: <StaffNoticeWritePage /> },
         ],
       },
+      {
+        path: RoutePath.StaffWardManagement,
+        element: <AuthorizedRoute allowedRoles={["admin"]} />,
+        children: [{ path: RoutePath.AdminWardManagement, element: <div>어드민</div> }],
+      },
     ],
   },
   { path: RoutePath.Signin, element: <SigninPage /> },
-  { path: RoutePath.AdminSignin, element: <AdminSigninPage /> },
+  { path: RoutePath.StaffSignin, element: <AdminSigninPage /> },
   { path: "*", element: <>Not found page</> },
 ];
 
