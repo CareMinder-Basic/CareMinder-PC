@@ -9,6 +9,12 @@ import { ReactComponent as User } from "@/assets/serachIcons/user.svg";
 import { ReactComponent as DownArrow } from "@/assets/serachIcons/DownArrow.svg";
 import { ReactComponent as UpArrow } from "@/assets/serachIcons/UpArrow.svg";
 
+//staff
+import { ReactComponent as UserStaff } from "@/assets/serachIcons/user-staff.svg";
+import { ReactComponent as UserSearch } from "@/assets/serachIcons/search-staff.svg";
+import { useRecoilValue } from "recoil";
+import { userState } from "@libraries/recoil";
+
 export default function SearchBox() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
@@ -16,6 +22,7 @@ export default function SearchBox() {
   const [nurses, setNurses] = useState<Nurse[]>([]);
   const [searching, setSearching] = useState<boolean>(false);
   const [selectedNurse, setSelectedNurse] = useState<string>("");
+  const user = useRecoilValue(userState);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -59,7 +66,11 @@ export default function SearchBox() {
         disableUnderline={true}
         startAdornment={
           <ListBox onClick={handleList} isEmpty={selectedNurse}>
-            <User style={{ marginBottom: "2px" }} />
+            {user?.type === "main" ? (
+              <User style={{ marginBottom: "2px" }} />
+            ) : (
+              <UserStaff style={{ marginBottom: "2px" }} />
+            )}
             {selectedNurse === "" ? null : (
               <>
                 {" "}
@@ -69,7 +80,13 @@ export default function SearchBox() {
             )}
           </ListBox>
         }
-        endAdornment={<Search style={{ cursor: "pointer" }} />}
+        endAdornment={
+          user?.type === "main" ? (
+            <Search style={{ cursor: "pointer" }} />
+          ) : (
+            <UserSearch style={{ cursor: "pointer" }} />
+          )
+        }
         isOpen={isOpen}
       />
       {isOpen && (
