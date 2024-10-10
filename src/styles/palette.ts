@@ -29,6 +29,7 @@ const palette = {
     main: CMColors.primary.a60,
     light: CMColors.primary.a90,
     dark: CMColors.primary.a0,
+    gray: CMColors.primary.a95,
     contrastText: CMColors.primary.a100,
   },
   secondary: {

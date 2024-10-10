@@ -13,6 +13,7 @@ import {
   RequestsPage,
   SettingsPage,
   SigninPage,
+  AdminStaffManagementPage,
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
@@ -35,16 +36,15 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
+          { path: RoutePath.AdminNotice, element: <AdminNoticePage /> },
           { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-          { path: RoutePath.AdminNoticeWrite, element: <AdminWardInoutManagementPage /> },
+          { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
         ],
       },
       {
         path: RoutePath.AdminWardManagement,
         element: <AuthorizedRoute allowedRoles={["admin"]} />,
-        children: [
-          { index: true, element: <AdminWardManagementPage /> },
-        ],
+        children: [{ index: true, element: <AdminWardManagementPage /> }],
       },
     ],
   },
