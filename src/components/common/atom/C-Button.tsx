@@ -8,6 +8,7 @@ export type CustomButtonProps = {
     | "primarySpaureWhite"
     | "login"
     | "primaryWhite"
+    | "primaryBlack"
     | "primarySpaureLong";
 } & ButtonProps;
 
@@ -58,6 +59,15 @@ const StyledButton = styled(Button)<CustomButtonProps>(({ buttonType, theme }) =
     color: theme.palette.primary.main,
     border: `1px solid ${theme.palette.primary.main}`,
     width: "100%",
+  }),
+  ...(buttonType === "primaryBlack" && {
+    backgroundColor: theme.palette.primary.contrastText,
+    color: "black",
+    border: `1px solid #8C8E94`,
+    width: "100%",
+    height: "100%",
+    borderRadius: "100px",
+    fontSize: "14px",
   }),
   ...(buttonType === "login" && {
     "backgroundImage": "linear-gradient(#5D6DBE,#607AFF)",

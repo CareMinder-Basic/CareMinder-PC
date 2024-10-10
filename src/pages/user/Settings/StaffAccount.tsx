@@ -4,12 +4,16 @@ import PaginationComponent from "@components/common/pagination";
 import StaffAccountSettingsTable from "@components/settings/StaffAccountSettingsTable";
 import { Stack, Typography } from "@mui/material";
 import { useBooleanState } from "@toss/react";
-import NewStaffModal from "@components/settings/NewStaffModal";
+import NewStaffModal from "@components/settings/modal/NewStaffModal";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { NewStaff, NewStaffField, QuickRegisterNewStaff } from "@models/staff";
 import NewStaffInputField from "@components/settings/NewStaffInputField";
-import { ReactComponent as EmptyStaff } from "@/assets/EmptyStaff.svg";
+import InfoModal from "@components/settings/modal/InfoModal";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import settingsLoginState from "@libraries/recoil/settings";
+import modalState from "@libraries/recoil/modal";
+import TOSModal from "@components/settings/modal/TOSModal";
 
 // 스태프 계정 설정
 
@@ -29,17 +33,51 @@ const quickRegisters: QuickRegisterNewStaff[] = [
 
 export const StaffAccount = () => {
   const [open, openCreateModal, closeCreateModal] = useBooleanState(false);
+  const [openDelete, openDeleteModal, closeDeleteModal] = useBooleanState(false);
+  const [openTOS, openTOSModal, closeTOSModal] = useBooleanState(false);
+
   const [isCreate, setIsCreate] = useState<boolean>(false);
-  const [isEmpty, setIsEmpty] = useState<boolean>(true);
+
+  const settingsLogin = useRecoilValue(settingsLoginState);
+  const setIsModalOpen = useSetRecoilState(modalState);
 
   const form = useForm<NewStaff>({
     defaultValues,
     mode: "onChange",
   });
-  // const { handleSubmit } = form;
+
+  const { handleSubmit } = form;
+
+  const onSubmit: SubmitHandler<NewStaff> = data => {
+    console.log(data);
+  };
 
   const createNewStaff = () => {
+    if (settingsLogin) {
+      openTOSModal();
+    } else {
+      window.alert("스태프 로그인을 해주세요");
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleLogin = () => {
+    window.alert("스태프 로그인을 해주세요");
+    setIsModalOpen(true);
+  };
+
+  const handleDeleteStaff = () => {
+    if (settingsLogin) {
+      openDeleteModal();
+    } else {
+      window.alert("스태프 로그인을 해주세요");
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleTOS = () => {
     setIsCreate(true);
+    closeTOSModal();
   };
 
   return (
@@ -65,7 +103,18 @@ export const StaffAccount = () => {
                 ))}
               </Stack>
               <ConfirmLayout>
-                <CButton buttonType="primary" style={{ width: "134px", height: "45px" }}>
+                <CButton
+                  buttonType="primaryWhite"
+                  onClick={() => setIsCreate(prev => !prev)}
+                  style={{ width: "134px", height: "45px" }}
+                >
+                  이전으로
+                </CButton>
+                <CButton
+                  buttonType="primary"
+                  onClick={handleSubmit(onSubmit)}
+                  style={{ width: "134px", height: "45px" }}
+                >
                   다음
                 </CButton>
               </ConfirmLayout>
@@ -75,7 +124,14 @@ export const StaffAccount = () => {
       ) : (
         <>
           {" "}
-          <NewStaffModal open={open} onClose={closeCreateModal}></NewStaffModal>
+          <NewStaffModal open={open} onClose={closeCreateModal} />
+          <TOSModal open={openTOS} onClose={closeTOSModal} onConfirm={handleTOS} />
+          <InfoModal
+            open={openDelete}
+            onClose={closeDeleteModal}
+            modalType={"checkDeleteStaff"}
+            onConfirm={() => null}
+          ></InfoModal>
           <BodyTitleContainer>
             <div>
               <Title variant="h1">스태프 계정 수정</Title>
@@ -84,28 +140,20 @@ export const StaffAccount = () => {
               <CButton buttonType="primarySpaureWhite" onClick={createNewStaff}>
                 스태프 계정 생성
               </CButton>
-              <CButton buttonType="primarySpaureWhite" onClick={openCreateModal}>
+              <CButton
+                buttonType="primarySpaureWhite"
+                onClick={settingsLogin ? openCreateModal : handleLogin}
+              >
                 스태프 추가
               </CButton>
             </StaffButtonContainer>
           </BodyTitleContainer>
-          {isEmpty ? (
-            <>
-              <EmptyStaffContainer>
-                <EmptyStaff />
-                <p>등록된 스태프가 없습니다.</p>
-              </EmptyStaffContainer>
-            </>
-          ) : (
-            <>
-              <StaffAccountSettingsTable />
-              <PaginationContainer>
-                <div>
-                  <PaginationComponent totalPage={5} />
-                </div>
-              </PaginationContainer>
-            </>
-          )}
+          <StaffAccountSettingsTable onDelete={handleDeleteStaff} />
+          <PaginationContainer>
+            <div>
+              <PaginationComponent totalPage={5} />
+            </div>
+          </PaginationContainer>
         </>
       )}
     </>
@@ -149,6 +197,7 @@ const StaffInputLayout = styled(Box)({
 const ConfirmLayout = styled(Box)({
   display: "flex",
   justifyContent: "center",
+  gap: "40px",
   marginTop: "20px",
 });
 

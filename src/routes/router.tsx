@@ -4,7 +4,6 @@ import AuthenticatedLayout from "@components/layout";
 import AuthorizedRoute from "@routes/AuthorizedRoute";
 import {
   AdminSigninPage,
-  AdminStaffManagementPage,
   AdminWardManagementPage,
   AdminWardInoutManagementPage,
   CompletedRequestsPage,
@@ -17,6 +16,8 @@ import {
 } from "@pages/index";
 import MainHomePage from "@pages/user/MainHomePage";
 import StaffHomePage from "@pages/user/StaffHomePage";
+import AdminNoticePage from "@pages/admin/AdminNoticePage";
+import AdminNoticeWritePage from "@pages/admin/AdminNoticeWritePage";
 
 const routes: RouteObject[] = [
   {
@@ -34,6 +35,8 @@ const routes: RouteObject[] = [
           { path: RoutePath.PatientManagement, element: <PatientManagementPage /> },
           { path: RoutePath.Requests, element: <RequestsPage /> },
           { path: RoutePath.Settings, element: <SettingsPage /> },
+          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
+          { path: RoutePath.AdminNoticeWrite, element: <AdminWardInoutManagementPage /> },
         ],
       },
       {
@@ -41,8 +44,6 @@ const routes: RouteObject[] = [
         element: <AuthorizedRoute allowedRoles={["admin"]} />,
         children: [
           { index: true, element: <AdminWardManagementPage /> },
-          { path: RoutePath.AdminWardInOut, element: <AdminWardInoutManagementPage /> },
-          // { path: RoutePath.AdminStaffManagement, element: <AdminStaffManagementPage /> },
         ],
       },
     ],
