@@ -1,53 +1,30 @@
-import { Box, Stack, SvgIcon, Typography, styled } from "@mui/material";
-import { AdminNoticeCard, AdminTable } from "@components/admin";
-import CSearchBox from "@components/common/atom/C-SearchBox";
+import { Box, Stack, Typography, styled } from "@mui/material";
+import { AdminTable } from "@components/admin";
 
 import CButton from "@components/common/atom/C-Button";
 
 import PaginationComponent from "@components/common/pagination";
-import AdminNoticeCardDeatil from "@components/admin/adminNotice/adminNoticeCardDetail";
+import AdminNoticeWriteForm from "@components/admin/adminNotice/adminNoticeWriteForm";
 
-const mock = [1, 2, 3, 4, 5, 6, 7];
-
-const AdminNoticePage = () => {
+const StaffNoticeWritePage = () => {
   return (
     <Container>
       <div>
         <Title variant="h1">공지</Title>
         <AdminInoutSubTitleContainer>
-          <AdminInoutSubTitleLeftContainer>
-            <CSearchBox
-              value={""}
-              onChange={() => null}
-              placeholder={"검색 내용을 입력해주세요."}
-              borderColor="#8C8E94"
-            />
-          </AdminInoutSubTitleLeftContainer>
+          <AdminInoutSubTitleLeftContainer></AdminInoutSubTitleLeftContainer>
           <AdminInoutSubTitleRightContainer>
-            <ButtonListLayout>
-              <ButtonLayout width={"124px"}>
-                <CButton buttonType={"primaryBlack"}>내 환자 대상 공지</CButton>
-              </ButtonLayout>
-              <ButtonLayout width={"121px"}>
-                <CButton buttonType={"primaryBlack"}>내가 작성한 공지</CButton>
-              </ButtonLayout>
-              <ButtonLayout width={"150px"}>
-                <CButton buttonType={"primaryBlack"}>내 근무 시간동안 공지</CButton>
-              </ButtonLayout>
-            </ButtonListLayout>
             <ButtonLayout width={"148px"}>
-              <CButton buttonType={"primarySpaureWhite"}>공지 작성</CButton>
+              <CButton buttonType={"primarySpaure"}>공지 작성</CButton>
             </ButtonLayout>
           </AdminInoutSubTitleRightContainer>
         </AdminInoutSubTitleContainer>
       </div>
       <TableLayout>
         <AdminNoticeListLayout>
-          {mock.map(item => {
-            return <AdminNoticeCard key={item} />;
-          })}
+          <AdminTable />
         </AdminNoticeListLayout>
-        <AdminNoticeCardDeatil />
+        <AdminNoticeWriteForm />
       </TableLayout>
       <FooterLayout>
         <PaginationComponent totalPage={5} />
@@ -56,7 +33,7 @@ const AdminNoticePage = () => {
   );
 };
 
-export default AdminNoticePage;
+export default StaffNoticeWritePage;
 
 /** styles */
 
@@ -65,11 +42,9 @@ const Container = styled(Stack)({
 });
 
 const AdminInoutSubTitleContainer = styled(Box)({
-  width: "100%",
   marginTop: "17.66px",
   display: "flex",
   justifyContent: "space-between",
-  gap: "22px",
 });
 
 const AdminNoticeListLayout = styled(Box)({
@@ -79,7 +54,7 @@ const AdminNoticeListLayout = styled(Box)({
 const AdminInoutSubTitleLeftContainer = styled(Box)({
   display: "flex",
   width: "50%",
-  // gap: "20px",
+  gap: "20px",
   alignItems: "center",
 });
 const AdminInoutSubTitleRightContainer = styled(Box)({
@@ -88,11 +63,10 @@ const AdminInoutSubTitleRightContainer = styled(Box)({
   alignItems: "center",
   gap: "15.66px",
 
-  justifyContent: "space-between",
+  justifyContent: "end",
 });
 const ButtonLayout = styled(Box)(width => ({
   width: `${width}`,
-  maxHeight: "34px",
 }));
 const ButtonListLayout = styled(Box)({
   display: "flex",

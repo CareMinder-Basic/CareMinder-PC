@@ -16,7 +16,7 @@ export default function PatientManagementMenu() {
         main: <MenuLayout routePath={"/"} pageName={"입퇴원 관리"} icon={PatientManagement} />,
         staff: (
           <MenuLayout
-            routePath={RoutePath.AdminWardInOut}
+            routePath={RoutePath.StaffWardInOut}
             pageName={"입퇴원 관리"}
             icon={PatientManagement}
           />
