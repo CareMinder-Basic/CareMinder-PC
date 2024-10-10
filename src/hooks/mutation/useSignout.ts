@@ -6,9 +6,9 @@ import { userState } from "@libraries/recoil";
 
 const signOut = async () => {
   const res = await axiosInstance.post("/staff/logout");
-  if (res.data.accessToekn && res.data.refreshToken) {
-    Cookies.set("accessToekn", "");
-    Cookies.set("refreshToekn", "");
+  if (res.data.accessToken && res.data.refreshToken) {
+    Cookies.set("accessToken", "");
+    Cookies.set("refreshToken", "");
   }
   return res.data;
 };

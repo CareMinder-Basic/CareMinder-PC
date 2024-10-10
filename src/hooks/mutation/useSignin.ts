@@ -7,9 +7,9 @@ import { userState } from "@libraries/recoil";
 
 const signin = async (useInfo: SigninFormData) => {
   const res = await axiosInstance.post("/staff/login", useInfo);
-  if (res.data.accessToekn && res.data.refreshToken) {
-    Cookies.set("accessToekn", res.data.accessToekn);
-    Cookies.set("refreshToekn", res.data.refreshToekn);
+
+  if (res.data.accessToken) {
+    Cookies.set("accessToken", res.data.accessToken);
   }
   return res.data;
 };

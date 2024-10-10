@@ -14,13 +14,12 @@ axiosInstance.interceptors.response.use(
   res => {
     return res;
   },
-
   async error => {
     if (error.response.status === 401) {
       const isAccessToken = Cookies.get("accessToken") !== undefined;
-      const isRefreshToken = Cookies.get("refreshToken") !== undefined;
+      
 
-      if (!isAccessToken || !isRefreshToken) {
+      if (!isAccessToken) {
         return Promise.reject(error);
       }
 
