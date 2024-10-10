@@ -5,6 +5,7 @@ import {
   CompletedRequestsMenu,
   NoticeMenu,
   SettingsMenu,
+  DietMenu,
 } from "@components/layout/sidebar/menu";
 
 export default function UserSidebar() {
@@ -12,7 +13,7 @@ export default function UserSidebar() {
     <>
       <HomeMenu />
       {/* Todo */}
-      {/* <DietMenu /> */}
+      <DietMenu />
       <RequestsMenu />
       <PatientManagementMenu />
       <CompletedRequestsMenu />

@@ -90,7 +90,7 @@ const TabContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: theme.palette.secondary.light,
+  backgroundColor: theme.palette.primary.gray,
   width: "602px",
   height: "44px",
   borderRadius: "100px",
@@ -105,8 +105,8 @@ const TabButton = styled(Button, {
   shouldForwardProp: prop => prop !== "isActive",
 })<TabButtonProps>(({ theme, isActive }) => ({
   "width": "33%",
-  "backgroundColor": isActive ? theme.palette.primary.contrastText : theme.palette.secondary.light,
-  "color": isActive ? theme.palette.primary.dark : theme.palette.text.disabled,
+  "backgroundColor": isActive ? theme.palette.primary.contrastText : theme.palette.primary.gray,
+  "color": isActive ? theme.palette.text.primary : theme.palette.text.disabled,
   "borderRadius": "100px",
   "&:hover": {
     backgroundColor: isActive ? theme.palette.primary.contrastText : theme.palette.background,

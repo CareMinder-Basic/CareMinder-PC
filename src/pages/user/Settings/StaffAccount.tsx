@@ -211,3 +211,13 @@ const Title = styled(Typography)(({ theme }) => ({
   lineHeight: "24px",
   letterSpacing: "-3%",
 }));
+
+const EmptyStaffContainer = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+
+  minHeight: "600px",
+  marginBottom: "100px",
+});

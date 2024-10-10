@@ -2,7 +2,6 @@ import { FunctionComponent } from "react";
 
 import { Link, Stack, styled, SvgIcon, SxProps, Theme, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import { UserType } from "@models/user";
 import { useRecoilValue } from "recoil";
 import { userState } from "@libraries/recoil";
 

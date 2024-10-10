@@ -11,7 +11,6 @@ const RoutePath = {
   AdminWardInOut: "/admin/staff/inout",
   AdminNotice: "/admin/staff/notice",
 
-
   // AdminStaffManagement: "/admin/staff",
 
   Signin: "/sign-in",

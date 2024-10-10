@@ -11,14 +11,14 @@ import {
 export default function StaffSidebar() {
   return (
     <>
-      <HomeMenu />
       {/* Todo */}
-      {/* <DietMenu /> */}
-      {/* <RequestsMenu /> */}
+      <HomeMenu />
+      <DietMenu />
+      <RequestsMenu />
       <PatientManagementMenu />
       <CompletedRequestsMenu />
       <NoticeMenu />
-      {/* <SettingsMenu /> */}
+      <SettingsMenu />
     </>
   );
 }

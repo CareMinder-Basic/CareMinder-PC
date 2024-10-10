@@ -20,7 +20,7 @@ export default function SigninForm({ form, onSubmit }: SigninFormProps) {
   return (
     <Container>
       <TextField label="ID" name="id" form={form} />
-      <TextField label="PW" name="password" form={form} />
+      <TextField label="PW" name="password" form={form} type="password" />
       <CButton
         buttonType="login"
         style={{ marginTop: "43.22px" }}

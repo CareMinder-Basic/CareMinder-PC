@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 const modalState = atom<boolean>({
   key: "main-settings-modal",
-  default: false,
+  default: true,
 });
 
 export default modalState;

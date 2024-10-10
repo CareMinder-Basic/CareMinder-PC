@@ -13,7 +13,7 @@ export default function PatientManagementMenu() {
     <SwitchCase
       value={user?.type as UserType}
       caseBy={{
-        main: <MenuLayout routePath={"/"} pageName={"입퇴원 관리"} icon={PatientManagement} />,
+        main: <MenuLayout routePath={"*"} pageName={"입퇴원 관리"} icon={PatientManagement} />,
         staff: (
           <MenuLayout
             routePath={RoutePath.AdminWardInOut}
